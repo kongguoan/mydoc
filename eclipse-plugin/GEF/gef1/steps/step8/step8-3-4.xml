@@ -42,4 +42,10 @@ protected Command getCreateCommand(CreateRequest request) {
             <imagedata fileref="../../images/step8/step8-4.jpg"/>
         </imageobject>
     </mediaobject>
+    <para>总结一下：要想做事，就要创建相应的 Command，并且更重要的是，还要知道把这些
+        Command放到合适的Policy中。 在http://help.eclipse.org/help31/index.jsp的GEF Programmer's
+        Guide 中的 Editing and Edit Policies 中提供了一些 Command 和 Policy的对应表。 </para>
+    <para>  大家可以想想为什么删除图形的工具按钮放在工具条中， 而添加图形的按钮放在 Palette
+        中。其实我觉得 Delete要比 Create简单。所以GEF把它们放在不同地方，也符合用户的习
+        惯。 </para>
 </section>
