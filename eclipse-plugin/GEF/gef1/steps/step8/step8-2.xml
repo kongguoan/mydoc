@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://www.oasis-open.org/docbook/xml/5.0/rng/docbook.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<section xmlns="http://docbook.org/ns/docbook"  xmlns:xi="http://www.w3.org/2001/XInclude"
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    <info>
+        <title>删除图形</title>
+     
+    </info>
+    <para>下面我们首先介绍一下如何删除图形。一般来讲，删除图形需要下面的一些步骤： </para>
+    <itemizedlist>
+        <listitem><para>在工具条或者菜单上创建相应的 Action。</para></listitem>
+        <listitem><para> 在图形模型 A中创建相应的删除函数 B，并通知 Editpart 相应的改变。</para></listitem>
+        <listitem><para>当删除图形时要用模型 A对应的 Editpart 刷新 Graphical Editor来显示删除。</para></listitem>
+        <listitem><para> 然后就要创建相应的 Command 来调用（2）中创建的删除函数 B。 </para></listitem>
+        <listitem><para> 在相关的 Policy中调用前面创建的 Command。</para></listitem>
+        <listitem><para> 在图形模型 A的子模型 C的 Editpart中安装这个 Policy。OK！ </para></listitem>
+    </itemizedlist>
+    <para>打开 DiagramActionBarContributor 类，在其中添加 Delete的 Action</para>
+    <programlisting language="java">public class DiagramActionBarContributor extends ActionBarContributor{
+    ........
+    protected void buildActions() {
+		addRetargetAction(new UndoRetargetAction());
+		addRetargetAction(new RedoRetargetAction());
+        //添加删除
+		addRetargetAction(new DeleteRetargetAction());
+	}
+    ......
+     public void contributeToToolBar(IToolBarManager toolBarManager) { 
+        toolBarManager.add(getAction(ActionFactory.UNDO.getId())); 
+        toolBarManager.add(getAction(ActionFactory.REDO.getId())); 
+         //添加到toolbar
+        toolBarManager.add(getAction(ActionFactory.DELETE.getId())); 
+    }
+    .......
+}
+
+    </programlisting>
+    <para>因此我们要删除的 HelloModel 是包含在 ContentsModel 中的，因此要在
+        ContentsModel 中添加删除 HelloModel 的函数。另外，我们的 AbstractModel 已经添加了
+        PropertyChangeSupport 来支持对 Editpart 的信息传递，因此，这里我们让
+        ContentsModel 继承 AbstractModel。修改 ContentsModel 的代码如下： </para>
+    <programlisting language="java">
+        <xi:include href="../../source/step8/step8-1.java" parse="text" language="java"/>
+    </programlisting>
+    <para>） 然后， ContentsEditPart 要能感知 ContentsModel相应的改变并修改 Graphical Editor
+    上图形的显示。方法和前面介绍的该改变 HelloEditPart 的方法一样。代码如下：</para>
+    <programlisting language="java">public class ContentsEditPart extends EditPartWithListener { 
+  ... 
+   @Override
+  public void propertyChange(PropertyChangeEvent evt) { 
+    // 模型改变时通知 
+    if (evt.getPropertyName().equals(ContentsModel.P_CHILDREN)) { 
+      // 因此子模型改变，要刷新子模型的 Editpart显示其改变 
+      refreshChildren(); 
+    } 
+  } 
+  ... 
+} 
+        
+        
+    </programlisting>
+    <note><para>注意这里利用 refreshChildren 方法来刷新子模型的 Editpart。 </para></note>
+    <para>要真的删除图形，还是要有相应的 Command 才行。因此我们创建了下面的DeleteCommand</para>
+    <programlisting language="java">
+        <xi:include href="../../source/step8/step8-2.java" parse="text" language="java"/>
+    </programlisting>
+    <para> Command 要在 Editing Policy 中调用。用户发出 Delete 命令时是发出的
+        REQ_DELETE 类型的 Request，因此我们要考虑在什么地方处理这个 Request。GEF提供了
+        ComponentEditPolicy来处理 REQ_DELETE 类型的Request。在ComponentEditPolicy类中，
+        当发送 REQ_DELETE 类型的 Request 后，就调用 createDeleteCommand 方法，然后在该方
+        法中用前面创建的 DeleteCommand 来实现对图形的删除。 
+        所以，下面创建一个 ComponentEditPolicy的派生类 CustomComponentEditPolicy，
+        然后重载其 createDeleteCommand 方法，代码如下： 
+    </para>
+    <programlisting language="java">
+        <xi:include href="../../source/step8/step8-3.java" parse="text" language="java"/>
+    </programlisting>
+    <note><para>这里 getHost 方法得到的是 HelloModel 的 Editpart，这是因为这个
+    CustomComponentEditPolicy 要安装到 HelloModel 对应的 HelloEditorPart 中。 </para></note>
+    <para>最后，把这个 CustomComponentEditPolicy 安装到 HelloEditPart 中。这里
+    使用 GEF提供的 COMPONENT_ROLE 来标识这个安装的 Policy。 </para>
+    <programlisting language="java">public class HelloEditPart extends EditPartWithListener { 
+  ... 
+  protected void createEditPolicies() { 
+    installEditPolicy(EditPolicy.COMPONENT_ROLE, new CustomComponentEditPolicy()); 
+  } 
+  ... 
+} 
+        
+    </programlisting>
+    <mediaobject>
+        <imageobject>
+            <imagedata fileref="../../images/step8/step8-1.jpg"/>
+        </imageobject>
+    </mediaobject>
+</section>

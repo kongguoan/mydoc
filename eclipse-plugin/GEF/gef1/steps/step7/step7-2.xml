@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://www.oasis-open.org/docbook/xml/5.0/rng/docbook.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<section xmlns="http://docbook.org/ns/docbook" xmlns:xi="http://www.w3.org/2001/XInclude" 
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    <info>
+        <title>在模型中设置监听器</title>
+      
+    </info>
+    <para>模型有责任把自己的改变通知 EditPart，因为对所有的模型都要通知对应的 EditPart，所以创建一个抽
+        象类AbstractModel作为这些模型类的超类， 在AbstractModel类中使用java.beans.PropertyChangeListener 接
+        口和 java.beans.PropertyChangeSupport类完成这个目的。 </para>
+    <programlisting language="java">
+        <xi:include href="../../source/step7/step7-1.java" parse="text" language="java"/>
+    </programlisting>
+    <para>下面， 我们就使 AbstractModel 作为 HelloModel 的超类， 因为是 HelloModel 改变。 然后在 setConstraint 
+        方法中调用 firePropertyChange。 
+    </para>
+    <programlisting language="java">
+        <xi:include href="../../source/step7/step7-2.java" parse="text" language="java"/>
+    </programlisting>
+    <note>
+        <para>这里注意我们设置了一个常量 P_CONSTRAINT 作为模型中约束改变的标示。 
+            firePropertyChange 的第 2个参数都是 null。 </para>
+    </note>
+</section>

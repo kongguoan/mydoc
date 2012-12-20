@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://www.oasis-open.org/docbook/xml/5.0/rng/docbook.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<article xmlns="http://docbook.org/ns/docbook"  xmlns:xi="http://www.w3.org/2001/XInclude"
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    <info>
+        <title>删除和添加图形</title>
+       
+    </info>
+    <para>内容提要 </para>
+    <itemizedlist>
+        <listitem><para>删除和添加图形</para></listitem>
+        <listitem><para>从视图Graphicalviewer 修改图形后如何通知给 model 模型 </para></listitem>
+        <listitem><para>为什么要建立抽象模型</para> </listitem>
+        <listitem><para>使用 PaletterViewer。如何为 PaletterViewer 添加标准工具 Tool，添加自定义工具，设
+            置 PaletterViewer的抽屉 drawer属性视图  </para></listitem>
+    </itemizedlist>
+    <xi:include href="step8-2.xml"/>
+    <xi:include href="step8-3.xml"/>
+</article>

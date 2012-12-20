@@ -3,8 +3,7 @@
 <book xmlns="http://docbook.org/ns/docbook"
     xmlns:xlink="http://www.w3.org/1999/xlink"  xmlns:xi="http://www.w3.org/2001/XInclude" version="5.0">
     <info>
-        <title>GEF 教程2</title>
-       
+        <title>GEF 教程2</title>  
     </info>
     <xi:include href="steps/step1/step1-1.xml"/>
     <xi:include href="steps/step2/step2-1.xml"/>
@@ -12,4 +11,6 @@
     <xi:include href="steps/step4/step4-1.xml"/>
     <xi:include href="steps/step5/step5-1.xml"/>
     <xi:include href="steps/step6/step6-1.xml"/>
+    <xi:include href="steps/step7/step7-1.xml"/>
+    <xi:include href="steps/step8/step8-1.xml"/>
 </book>
