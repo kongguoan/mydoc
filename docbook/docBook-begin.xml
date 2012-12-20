@@ -1,0 +1,401 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://www.oasis-open.org/docbook/xml/5.0/rng/docbook.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="http://www.oasis-open.org/docbook/xml/5.0/rng/docbook.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<article xmlns="http://docbook.org/ns/docbook" version="5.0"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns:xi="http://www.w3.org/2001/XInclude"
+   >
+    <info>
+        <title>简单入门</title>
+    </info>
+    <xi:include href="docBook-setup.xml" xmlns:xi="http://www.w3.org/2001/XInclude" />
+    <xi:include href="docBook-beginDoc.xml" xmlns:xi="http://www.w3.org/2001/XInclude" />
+    <xi:include href="docBook-partElement.xml" xmlns:xi="http://www.w3.org/2001/XInclude" />
+   <section>
+       <info>
+           <title>分子元素</title>
+       </info>
+       <para> DocBook 最基本的元素是 para 和块元素，比它们大的是结构元素，比它们小的是行内元素。<table frame="all">
+                <title/>
+                <tgroup cols="2">
+                    <colspec colname="c1" colnum="1" colwidth="1.0*"/>
+                    <colspec colname="c2" colnum="2" colwidth="1.0*"/>
+                    <thead>
+                        <row>
+                            <entry>元素</entry>
+                            <entry>说明</entry>
+                        </row>
+                    </thead>
+                    <tbody>
+                        <row>
+                            <entry> sect1 </entry>
+                            <entry>节（1~5级）</entry>
+                        </row>
+                        <row>
+                            <entry> section </entry>
+                            <entry>节（无限）</entry>
+                        </row>
+                        <row>
+                            <entry> para </entry>
+                            <entry> 段落 </entry>
+                        </row>
+                        <row>
+                            <entry> formalpara </entry>
+                            <entry> 带标题段落 </entry>
+                        </row>
+                    </tbody>
+                </tgroup>
+            </table>
+        </para>
+   </section>
+    <section>
+        <info>
+            <title>块元素</title>
+        </info>
+        <para>块元素是和<emphasis role="bold">para</emphasis>同级的元素，它们比较复杂，后面会分别介绍</para>
+        <informaltable border="1">
+            <colgroup span="1">
+                <col/>
+                <col/>
+                <col/>
+            </colgroup>
+            <thead>
+                <tr>
+                    <th rowspan="1" colspan="1">类别</th>
+                    <th rowspan="1" colspan="1">元素</th>
+                    <th rowspan="1" colspan="1">说明</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td rowspan="8" colspan="1">列表</td>
+                    <td rowspan="1" colspan="1">calloutlist</td>
+                    <td rowspan="1" colspan="1"> </td>
+                </tr>
+                <tr>
+                    <td rowspan="1" colspan="1">bibliolist</td>
+                    <td rowspan="1" colspan="1">书目列表</td>
+                </tr>
+                <tr>
+                    <td rowspan="1" colspan="1">glosslist</td>
+                    <td rowspan="1" colspan="1">词汇列表</td>
+                </tr>
+                <tr>
+                    <td rowspan="1" colspan="1">itemizedlist</td>
+                    <td rowspan="1" colspan="1">无序列表</td>
+                </tr>
+                <tr>
+                    <td rowspan="1" colspan="1">orderedlist</td>
+                    <td rowspan="1" colspan="1">有序列表</td>
+                </tr>
+                <tr>
+                    <td rowspan="1" colspan="1">segmentedlist</td>
+                    <td rowspan="1" colspan="1">成分列表</td>
+                </tr>
+                <tr>
+                    <td rowspan="1" colspan="1">simplelist</td>
+                    <td rowspan="1" colspan="1">简单列表</td>
+                </tr>
+                <tr>
+                    <td rowspan="1" colspan="1">variablelist</td>
+                    <td rowspan="1" colspan="1">定义列表</td>
+                </tr>
+                <tr>
+                    <td rowspan="5" colspan="1">告示</td>
+                    <td rowspan="1" colspan="1">caution</td>
+                    <td rowspan="1" colspan="1">小心</td>
+                </tr>
+                <tr>
+                    <td rowspan="1" colspan="1">important</td>
+                    <td rowspan="1" colspan="1">重要</td>
+                </tr>
+                <tr>
+                    <td rowspan="1" colspan="1">note</td>
+                    <td rowspan="1" colspan="1">注意</td>
+                </tr>
+                <tr>
+                    <td rowspan="1" colspan="1">tip</td>
+                    <td rowspan="1" colspan="1">提示</td>
+                </tr>
+                <tr>
+                    <td rowspan="1" colspan="1">warning</td>
+                    <td rowspan="1" colspan="1">警告</td>
+                </tr>
+                <tr>
+                    <td rowspan="5" colspan="1">文本</td>
+                    <td rowspan="1" colspan="1">address</td>
+                    <td rowspan="1" colspan="1">地址</td>
+                </tr>
+                <tr>
+                    <td rowspan="1" colspan="1">literallayout</td>
+                    <td rowspan="1" colspan="1">纯文本</td>
+                </tr>
+                <tr>
+                    <td rowspan="1" colspan="1">programlisting</td>
+                    <td rowspan="1" colspan="1">代码</td>
+                </tr>
+                <tr>
+                    <td rowspan="1" colspan="1">screen</td>
+                    <td rowspan="1" colspan="1">文本抓屏</td>
+                </tr>
+                <tr>
+                    <td rowspan="1" colspan="1">synopsis</td>
+                    <td rowspan="1" colspan="1">命令、函数纲要</td>
+                </tr>
+                <tr>
+                    <td rowspan="6" colspan="1">例子，图片和表格</td>
+                    <td rowspan="1" colspan="1">example</td>
+                    <td rowspan="1" colspan="1"> </td>
+                </tr>
+                <tr>
+                    <td rowspan="1" colspan="1">informalexample</td>
+                    <td rowspan="1" colspan="1"> </td>
+                </tr>
+                <tr>
+                    <td rowspan="1" colspan="1">figure</td>
+                    <td rowspan="1" colspan="1"> </td>
+                </tr>
+                <tr>
+                    <td rowspan="1" colspan="1">informalfigure</td>
+                    <td rowspan="1" colspan="1"> </td>
+                </tr>
+                <tr>
+                    <td rowspan="1" colspan="1">table</td>
+                    <td rowspan="1" colspan="1"> </td>
+                </tr>
+                <tr>
+                    <td rowspan="1" colspan="1">informaltable</td>
+                    <td rowspan="1" colspan="1"> </td>
+                </tr>
+                <tr>
+                    <td rowspan="5" colspan="1">媒体文件</td>
+                    <td rowspan="1" colspan="1">audioobject</td>
+                    <td rowspan="1" colspan="1">音频对象</td>
+                </tr>
+                <tr>
+                    <td rowspan="1" colspan="1">imageobject</td>
+                    <td rowspan="1" colspan="1">图片对象</td>
+                </tr>
+                <tr>
+                    <td rowspan="1" colspan="1">imageobjectco</td>
+                    <td rowspan="1" colspan="1">带 callout 的图片对象</td>
+                </tr>
+                <tr>
+                    <td rowspan="1" colspan="1">videoobject</td>
+                    <td rowspan="1" colspan="1">视频对象</td>
+                </tr>
+                <tr>
+                    <td rowspan="1" colspan="1">textobject</td>
+                    <td rowspan="1" colspan="1">文本对象</td>
+                </tr>
+                <tr>
+                    <td rowspan="4" colspan="1">其他</td>
+                    <td rowspan="1" colspan="1">blockquote</td>
+                    <td rowspan="1" colspan="1">引用</td>
+                </tr>
+                <tr>
+                    <td rowspan="1" colspan="1">epigraph</td>
+                    <td rowspan="1" colspan="1">题记</td>
+                </tr>
+                <tr>
+                    <td rowspan="1" colspan="1">msgset</td>
+                    <td rowspan="1" colspan="1">有关的错误信息</td>
+                </tr>
+                <tr>
+                    <td rowspan="1" colspan="1">sidebar</td>
+                    <td rowspan="1" colspan="1">侧边栏</td>
+                </tr>
+            </tbody>
+        </informaltable>
+    </section>
+    <section>
+        <info>
+            <title>行内元素</title>
+        </info>
+        <para></para>
+        <para> 假如你想用特殊的格式表示诸如短语、用户输入、命令、软件、文件，尽量不要使用 emphasis(强调)，它们有专门的元素来表示。</para>
+        <para> 尽管使用了这些元素，得到的效果可能和强调一样是粗体，而且还要考虑使用哪种类型，比较麻烦。 </para>
+        <para> 不过等到你想用红色表示命令、绿色表示文件……，这个时候，如果你一直用的是 emphasis，你将会为你的草率付出代价。 </para>
+        <informaltable border="1">
+            <colgroup span="1">
+                <col/>
+                <col/>
+                <col/>
+            </colgroup>
+            <thead>
+                <tr>
+                    <th rowspan="1" colspan="1">元素名</th>
+                    <th rowspan="1" colspan="1">含义</th>
+                    <th rowspan="1" colspan="1">示例</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td rowspan="1" colspan="1">abbrev</td>
+                    <td rowspan="1" colspan="1">略写，一般后面带有一个点('.')</td>
+                    <td rowspan="1" colspan="1">abbrev</td>
+                </tr>
+                <tr>
+                    <td rowspan="1" colspan="1">emphasis</td>
+                    <td rowspan="1" colspan="1">强调</td>
+                    <td rowspan="1" colspan="1"><emphasis role="italic">强调</emphasis></td>
+                </tr>
+                <tr>
+                    <td rowspan="1" colspan="1">phrase</td>
+                    <td rowspan="1" colspan="1">短语</td>
+                    <td rowspan="1" colspan="1">短语</td>
+                </tr>
+                <tr>
+                    <td rowspan="1" colspan="1">quote</td>
+                    <td rowspan="1" colspan="1">用引号引起来</td>
+                    <td rowspan="1" colspan="1">“用引号引起来”</td>
+                </tr>
+                <tr>
+                    <td rowspan="1" colspan="1">trademark</td>
+                    <td rowspan="1" colspan="1">注册商标</td>
+                    <td rowspan="1" colspan="1"> 注册商标™</td>
+                </tr>
+                <tr>
+                    <td rowspan="1" colspan="1">literal</td>
+                    <td rowspan="1" colspan="1">文字的字面含义</td>
+                    <td rowspan="1" colspan="1">文字的字面含义</td>
+                </tr>
+                <tr>
+                    <td rowspan="1" colspan="1">prompt</td>
+                    <td rowspan="1" colspan="1">提示符</td>
+                    <td rowspan="1" colspan="1">提示符</td>
+                </tr>
+                <tr>
+                    <td rowspan="1" colspan="1">userinput</td>
+                    <td rowspan="1" colspan="1">用户输入</td>
+                    <td rowspan="1" colspan="1"><emphasis role="bold">用户输入</emphasis></td>
+                </tr>
+                <tr>
+                    <td rowspan="1" colspan="1">subscript</td>
+                    <td rowspan="1" colspan="1">下标</td>
+                    <td rowspan="1" colspan="1">下标</td>
+                </tr>
+                <tr>
+                    <td rowspan="1" colspan="1">superscript</td>
+                    <td rowspan="1" colspan="1">上标</td>
+                    <td rowspan="1" colspan="1">上标</td>
+                </tr>
+                <tr>
+                    <td rowspan="1" colspan="1">application</td>
+                    <td rowspan="1" colspan="1">软件名</td>
+                    <td rowspan="1" colspan="1">软件名</td>
+                </tr>
+                <tr>
+                    <td rowspan="1" colspan="1">command</td>
+                    <td rowspan="1" colspan="1">命令</td>
+                    <td rowspan="1" colspan="1"><emphasis role="bold">命令</emphasis></td>
+                </tr>
+                <tr>
+                    <td rowspan="1" colspan="1">envar</td>
+                    <td rowspan="1" colspan="1">环境变量</td>
+                    <td rowspan="1" colspan="1">环境变量</td>
+                </tr>
+                <tr>
+                    <td rowspan="1" colspan="1">filename</td>
+                    <td rowspan="1" colspan="1">文件名</td>
+                    <td rowspan="1" colspan="1">文件名</td>
+                </tr>
+                <tr>
+                    <td rowspan="1" colspan="1">database</td>
+                    <td rowspan="1" colspan="1">数据库</td>
+                    <td rowspan="1" colspan="1">数据库</td>
+                </tr>
+                <tr>
+                    <td rowspan="1" colspan="1">email</td>
+                    <td rowspan="1" colspan="1">电子邮件</td>
+                    <td rowspan="1" colspan="1"><email>myking520@gmail.com</email></td>
+                </tr>
+            </tbody>
+        </informaltable>
+    </section>
+    <section>
+        <info>
+            <title>特殊字符</title>
+        </info>
+        <para>  一些字符在 XML 中有特殊的含义，只能够通过其实体名称输入  字符写法缩写涵义&lt;&amp;lt;less than>&amp;gt;greater
+            than&amp;&amp;amp;ampersand"&amp;quot;quote'&amp;apos;apostrophe空格&amp;nbsp;none-break space
+            通常需要使用实体输入的字符包括&lt;、&amp;、空格  XML
+            会将任意数量的空格解析为一个，如果想通过多个空格控制缩进，就要使用&amp;nbsp;  ]]&gt;这个字符序列也不能直接输入，这样输入它]]&amp;gt;
+            也可以不使用实体输入特殊字符，通过CDATA直接引用： &lt;![CDATA[ &lt;&amp; ]]&gt; </para>
+    </section>
+    <section>
+        <info>
+            <title>列表</title>
+        </info>
+        <para>最普通的列表为无序列表和有序列表：</para>
+        <screen>&lt;itemizedlist> <co xml:id="itemizedlist"/>
+  &lt;listitem>
+    列表项内容，可以使用para、formalpara等
+  &lt;/listitem>
+&lt;/itemizedlist></screen>
+        <calloutlist>
+            <callout arearefs="itemizedlist">
+                <para> 无序列表；有序列表为<emphasis role="bold">orderedlist</emphasis>，每个项自动编号 </para>
+            </callout>
+        </calloutlist>
+        <formalpara>
+            <title>词汇列表</title>
+            <para>词汇列表每一项包括一个词汇标题和词汇定义，标题粗体，定义缩进。这本身就是一个词汇列表</para>
+        </formalpara>
+        <screen>&lt;glosslist><co xml:id="glosslist"/>
+    &lt;glossentry><co xml:id="glossentry"/>
+        &lt;glossterm>词汇标题&lt;/glossterm><co xml:id="glossterm"/>
+        &lt;glossdef><co xml:id="glossdef"/>
+             &lt;para>词汇定义&lt;/para><co xml:id="para"/>
+        &lt;/glossdef>
+    &lt;/glossentry>
+&lt;/glosslist>    </screen>
+        <calloutlist>
+            <callout arearefs="glosslist">
+                <para>词汇列表</para>
+            </callout>
+            <callout arearefs="glossentry">
+                <para>列表项</para>
+            </callout>
+            <callout arearefs="glossdef">
+                <para>词汇定义</para>
+            </callout>
+            <callout arearefs="para">
+                <para>词汇定义必须为para元素</para>
+            </callout>
+        </calloutlist>
+    </section>
+    <section>
+            <info>
+                <title>Callout 列表</title>
+            </info>
+        <para> 在引用的代码块中加记号，并在外部注释。如果你要解释一个比较复杂的概念，<emphasis role="bold"
+            >calloutlist</emphasis>通常是最好的选择 </para>
+        <screen>
+&lt;screen>
+这里会有一个数字1&lt;co  xml:id="co1"/><co xml:id="co1"/>的记号
+它就是 callout &lt;co  xml:id="co2"/>   <co xml:id="co2"/>
+&lt;/screen>    
+    
+&lt;calloutlist><co xml:id="calloutlist"/>
+  &lt;callout arearefs="co1">这里是记号1的说明&lt;/callout><co xml:id="callout"/>
+  &lt;callout arearefs="co2">第二个记号的说明&lt;/callout>    
+&lt;/calloutlist>                
+        </screen>
+        <calloutlist>
+            <callout arearefs="co1">
+                <para>使用&lt;co id="co1"/>作记号</para>
+            </callout>
+            <callout arearefs="co2">
+            <para>使用&lt;co id="co2"/>作记号</para>
+            </callout>
+            <callout arearefs="calloutlist">
+                <para>calloutlist 列表，每一个项都用数字编号</para>
+            </callout>
+            <callout arearefs="callout">
+                <para> callout 元素作为解释，使用<emphasis role="bold">arearefs=""</emphasis>引用 </para>
+            </callout>
+        </calloutlist>
+    </section>
+    <xi:include href="docBook-beginTable.xml" xmlns:xi="http://www.w3.org/2001/XInclude" /> 
+</article>

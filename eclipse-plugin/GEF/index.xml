@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://www.oasis-open.org/docbook/xml/5.0/rng/docbook.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<book xmlns="http://docbook.org/ns/docbook"
+    xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xi="http://www.w3.org/2001/XInclude" version="5.0">
+   <article>
+       <title>GEF指南</title>
+       <section>
+           <title>导论（Introduction）</title>
+           <para>GEF（图形编辑框架）是一个Java技术，是由IBM开发的Eclipse框架的一部分。它为开发者提供图形化建模的完全解决方案，并可以用于连接如EMF（Eclipse建模框架）或GMF（图形建模框架）的其他技术，从而在应用开发中获得抽象层.</para>
+       </section>
+       <section>
+           <title>创建插件</title>
+           <para>开始创建一个RCP（富客户端平台）的Eclipse插件来创建一个使用GEF的应用。运行Eclipse，点击File—New—Project
+           </para>
+           <para>
+               <mediaobject>
+                   <imageobject>
+                       <imagedata fileref="images/create-plugin-in.jpg"/>
+                   </imageobject>
+               </mediaobject>
+           </para>
+            <para>
+                <mediaobject>
+                    <imageobject>
+                        <imagedata fileref="images/create-plugin-in-1.jpg"/>
+                    </imageobject>
+                </mediaobject>
+            </para>
+           <para>
+               <mediaobject>
+                   <imageobject>
+                        <imagedata fileref="images/create-plugin-in-2.jpg"/>
+                    </imageobject>
+               </mediaobject>
+           </para>
+           <para>
+               <mediaobject>
+                   <imageobject>
+                        <imagedata fileref="images/create-plugin-in-3.jpg"/>
+                    </imageobject>
+               </mediaobject>
+           </para>
+           <para>需要为工程的依赖（dependencies）列表添加GEF插件。编辑Dependencies表下的plugin.xml，点击Add，选择org.eclipse.gef插件</para>
+        <para>
+            <mediaobject>
+                    <imageobject>
+                        <imagedata fileref="images/create-plugin-in-4.jpg"/>
+                    </imageobject>
+                </mediaobject>
+        </para>
+           <para>现在在包中创建一个继承org.eclipse.gef.ui.parts.GraphicalEditor的类，这个类用于定义我们自己的图形编辑器（Graphical Editor）。这是我们工作的一类起点。搜先，EditorPart需要整合到插件中。 </para>
+    <para>
+        <mediaobject>
+            <imageobject> <imagedata fileref="images/create-plugin-in-5.jpg"/></imageobject>
+        </mediaobject>
+    </para>
+           <para> 添加ID告诉Eclipse我们想使用一个extension。然后创建一个构造器去定义我们要使用的EditDomain。</para>
+            <para>MyGraphicalEditor类具体添加代码如下： </para>
+       <programlisting language="java">
+                <xi:include href="sourecode/create-plugin/MyGraphicalEditor.java" parse="text" language="java"/>
+       </programlisting>
+           <para>
+               需要建立另一个类MyEditorInput，实现org.eclipse.ui.IEditorInput接口，类的描述如下：
+           </para>
+           <programlisting language="java">
+                <xi:include href="sourecode/create-plugin/MyEditorInput.java" parse="text" language="java"/>
+           </programlisting>
+           <para>编辑Extensions表中的plugin.xml，并点击Add添加一个extension，然后选择org.eclipse.ui.editor。需要修改id为我们自定义GraphicalEditor中所设置的ID，并修改名称，最后，选择extensions所扩展的类。</para>
+        <para>
+            <mediaobject>
+                <imageobject> <imagedata fileref="images/create-plugin-in-6.jpg"/></imageobject>
+            </mediaobject>
+        </para>
+           <note>
+               <para>如果你添加editor后没出现图示框。请转入编辑plugin.xml 将节点&lt;extension
+                    point="org.eclipse.ui.editors">&lt;/extension>修改为<programlisting language="xml">   &lt;extension        
+         point="org.eclipse.ui.editors">
+		&lt;editor name="MyGraphicalEditor" id="WBHGEF.mygraphicalEditor" class="wbhgef.MyGraphicalEditor">
+		&lt;/editor>
+   &lt;/extension>    
+               </programlisting></para>
+           </note>
+           <para>现在，剩余的工作就是在应用的启动中运行，为此，我们将加载ApplicationWorkbenchAdvisor 中的postStartup()方法。添加如下方法：</para>
+       </section>
+   </article>
+</book>

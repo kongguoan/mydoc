@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://www.oasis-open.org/docbook/xml/5.0/rng/docbook.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="http://www.oasis-open.org/docbook/xml/5.0/rng/docbook.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<section xmlns="http://docbook.org/ns/docbook"
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+<info>
+    <title>创建最基本的一个文档</title>
+</info>
+    <para>最基本的一个文档</para>
+    <screen> &lt;?xml version='1.0' encoding="UTF-8"?>
+&lt; xmlns="http://docbook.org/ns/docbook"
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0"> 
+&lt;article><co xml:id="article"/>
+  &lt;info><co xml:id="info"/>
+    &lt;title>文章&lt;/title> <co xml:id="title"/>
+    &lt;author>作者&lt;/author><co xml:id="author"/>
+    &lt;address>地址&lt;/address><co xml:id="address"/>
+    &lt;copyright><co xml:id="copyright"/>&lt;year><co xml:id="year"/>2008&lt;/year>&lt;holder>所有者&lt;/holder><co xml:id="holder"/>&lt;/copyright>
+  &lt;/info>
+  &lt;sect1>
+    &lt;title>标题&lt;/title>
+    &lt;para>
+      内容
+    &lt;/para>
+  &lt;/sect1>
+&lt;/article>  
+    </screen>
+    <calloutlist>
+        <callout arearefs="article">
+            <para>文档的根元素</para>
+        </callout>
+        <callout arearefs="info">
+            <para>文档信息</para>
+        </callout>
+    </calloutlist>
+</section>

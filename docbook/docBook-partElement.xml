@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://www.oasis-open.org/docbook/xml/5.0/rng/docbook.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="http://www.oasis-open.org/docbook/xml/5.0/rng/docbook.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<section xmlns="http://docbook.org/ns/docbook"
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    <info>
+        <title>结构元素</title>
+       
+    </info>
+   <para>
+       DocBook 中的一些元素，在发布的时候会作为条目被收进目录。它们表示的是文档内部的结构，所以它们是结构元素,如下：
+   </para>
+    <screen>
+  &lt;set>
+  &lt;book>
+    &lt;part>
+      &lt;chapter>
+        &lt;sect1>
+          &lt;sect2>
+	    …………
+          &lt;/sect2>
+        &lt;/sect1>
+      &lt;/chapter> 
+    &lt;/part>  
+  &lt;/book>  
+&lt;/set>           
+        
+    </screen>
+    <para>
+        如果 DocBook 的根元素是article，那么可以允许这种结构：
+    </para>
+    <screen>
+  &lt;article>
+  &lt;sect1>
+    &lt;sect2>
+	    …………
+    &lt;/sect2>
+  &lt;/sect1>
+&lt;/article>            
+        
+    </screen>
+    <para>结构元素可以拥有标题，title、titleabbrev、subtitle任选一个，还可以拥有info</para>
+    <para>以下是常用的结构元素
+    </para>
+
+    <table >
+        <title/>
+        <tgroup cols="2">
+            <colspec colname="c1" colnum="1" colwidth="1.0*"/>
+            <colspec colname="c2" colnum="2" colwidth="1.0*"/>
+            <thead>
+                <row>
+                    <entry>元素</entry>
+                    <entry>说明</entry>
+                </row>
+            </thead>
+            <tbody>
+                <row>
+                    <entry>set</entry>
+                    <entry>集</entry>
+                </row>
+                <row>
+                    <entry>book</entry>
+                    <entry>书</entry>
+                </row>
+                <row>
+                    <entry>part</entry>
+                    <entry>部</entry>
+                </row>
+                <row>
+                    <entry>chapter</entry>
+                    <entry>章</entry>
+                </row>
+                <row>
+                    <entry>article</entry>
+                    <entry>文章</entry>
+                </row>
+                <row>
+                    <entry>sections</entry>
+                    <entry>节</entry>
+                </row>
+            </tbody>
+        </tgroup>
+    </table>
+
+</section>

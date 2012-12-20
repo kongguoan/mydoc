@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://www.oasis-open.org/docbook/xml/5.0/rng/docbook.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<section xmlns="http://docbook.org/ns/docbook" xmlns:xi="http://www.w3.org/2001/XInclude" 
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    <info>
+        <title>Command</title>
+      
+    </info>
+    <para>  其实我们改变图形尺寸和移动图形位置虽然是两个请求（分 别对应于
+        RequestConstants#REQ_RESIZE_CHILDREN 和 RequestConstants#REQ_MOVE_CHILDREN） ，但是他们都
+        是和图形的约束相关的，所以我们在新创建一个改变约束的类 ChangeConstaintCommand 就行了。 </para>
+    <programlisting language="java">
+        <xi:include href="../../source/step6/step6-2.java" parse="text" language="java"/>
+    </programlisting>
+    <para>注意，上面的 execute()方法很重要，就是它执行命令的。 </para>
+</section>

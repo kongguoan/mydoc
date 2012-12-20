@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://www.oasis-open.org/docbook/xml/5.0/rng/docbook.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<article xmlns="http://docbook.org/ns/docbook"
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    <info>
+        <title>简介</title>
+    </info>
+    <para>　ICONIX是尽早进入编码阶段，缩短分析设计周期的软件开发方法 合理的简化统一过程(RUP)， 基于极限编程(XP)和 敏捷软件开发的思想. ICONIX过程与 UML和RUP相比，是轻量级的过程。 不同于XP和敏捷方法， ICONIX提供充足的需求和设计文档，但不过度分析设计。 ICONIX过程从把需求文档变成可运作的代码过程只需四步，使用四张UML图。
+        　　ICONIX的原则分别是它的用途 强壮分析一个方法为缩小分析和设计之间的差距。 强壮分析通过保证减少二义性在使用中案件描述，他们在伴随的上下文被写 领域模型. 这个过程使用途事例更加容易设计，测试和估计。
+        　　ICONIX过程在书被描述 使用案件塑造与UML的被驾驶的对象： 理论和实践
+        　　根本上， ICONIX过程描述塑造过程的核心“逻辑”分析和设计。 然而，过程可以使用，无需剪裁在跟随另外项目管理或敏捷方法学的项目。 书 敏捷发展以ICONIX过程在一个敏捷项目描述如何使用ICONIX过程。</para>
+</article>

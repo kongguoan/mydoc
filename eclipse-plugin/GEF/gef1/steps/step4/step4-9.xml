@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://www.oasis-open.org/docbook/xml/5.0/rng/docbook.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<section xmlns="http://docbook.org/ns/docbook"
+    xmlns:xlink="http://www.w3.org/1999/xlink"   xmlns:xi="http://www.w3.org/2001/XInclude"  version="5.0">
+    <info>
+        <title>把 ContentsEditPart也变成父模型 </title>
+       
+    </info>
+    <para> 
+        记得前面我们说过 GEF有个框架可以保证父子关系。为了使上面的父子关系能够顺利工作，需要在父
+        亲（这里是 ContentsModel）的 EditPart（这里是 ContentsEditPart）中，在 getModelChildren()方法（从
+        AbstractEditPart 继承而来）中返回子模型的列表 List。说白一点，就是说 ContentsModel既然当爹了，那它
+        对应的 ContentsEditPart 也要承担起当爹的责任。 
+    </para>
+    <programlisting language="java">
+        <xi:include href="../../source/step4/step4-5.java" parse="text" language="java"/>
+    </programlisting>
+    <para>好了，事到如今才把父子关系确定。 </para>
+</section>

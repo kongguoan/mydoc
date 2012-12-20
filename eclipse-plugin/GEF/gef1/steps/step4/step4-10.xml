@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://www.oasis-open.org/docbook/xml/5.0/rng/docbook.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<section xmlns="http://docbook.org/ns/docbook"
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    <info>
+        <title>在 Graphicalviewer中显示一下父子关系</title>
+      
+    </info>
+    <para>既然父子关系已经确定，也美化了 Hello World，那让我们在 Graphicalviewer 中显示一下吧。注意，在
+        这里显示的时候，我们才知道原来 HelloModel 真的是 ContentsModel 的儿子，因为 HelloModel 被加到
+        ContentsModel 里。这个添加过程是在 initializeGraphicalViewer方法中完成的 </para>
+    <programlisting language="java">package gef.tutorial.step.ui; 
+ 
+import gef.tutorial.step.model.ContentsModel; 
+import gef.tutorial.step.model.HelloModel; 
+import gef.tutorial.step.parts.PartFactory; 
+ 
+import org.eclipse.core.runtime.IProgressMonitor; 
+import org.eclipse.draw2d.geometry.Rectangle; 
+import org.eclipse.gef.DefaultEditDomain; 
+import org.eclipse.gef.GraphicalViewer; 
+import org.eclipse.gef.ui.parts.GraphicalEditor; 
+ 
+public class DiagramEditor extends GraphicalEditor { 
+...........
+ 
+  protected void initializeGraphicalViewer() { 
+ 	ContentsModel parent = new ContentsModel(); 
+	    HelloModel child1 = new HelloModel(); // 创建一个子模型 
+	    parent.addChild(child1); // 添加HelloModel到ContentsModel中 
+	    this.getGraphicalViewer().setContents(parent); 
+ } 
+ 
+ …………………………. 
+ }</programlisting>
+    <para>  如果再运行一下，就会发现下面的效果。靠，还是什么也没有。想想我们的程序和以前有什么变化呢，
+        那些改变模型的地方我们不要去想，因为那不影响图形显示。和图形相关的改变是：我们现在开始显示
+        ContentsModel 了，它对应的 ContentsEditPart 中设置了图层。 </para>
+    <mediaobject>
+        <imageobject>
+            <imagedata fileref="../../images/step4/step4-2.jpg"/>
+        </imageobject>
+    </mediaobject>
+    <para>而如果我们让 createFigure 方法返回 null：</para>
+    <mediaobject>
+        <imageobject>
+            <imagedata fileref="../../images/step4/step4-3.jpg"/>
+        </imageobject>
+    </mediaobject>
+</section>

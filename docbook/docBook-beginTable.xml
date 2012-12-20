@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://www.oasis-open.org/docbook/xml/5.0/rng/docbook.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="http://www.oasis-open.org/docbook/xml/5.0/rng/docbook.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<section xmlns="http://docbook.org/ns/docbook"
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    <info>
+        <title>表格</title>
+      
+    </info>
+ 
+        <para>表格更适合用可视化方式来生成；因为它有两个维度，使用线性的标记语言来生成，自然比较麻烦。</para>
+        <para>DocBook 生成表格虽然麻烦，但是相对 reStructuredText 等使用空间方位生成的方式，却更容易控制</para>
+        <para>表格分为两种<emphasis role="bold">table</emphasis>和<emphasis role="bold"
+                >informaltable</emphasis>，区别在于<emphasis role="bold"
+            >table</emphasis>可以有标题，能够被收录到目录中。下面是表格的实例：</para>
+      <section>
+          <info>
+              <title>表格实例</title>
+          </info>
+          <informaltable border="1">
+              <colgroup span="1">
+                  <col/>
+                  <col/>
+                  <col/>
+              </colgroup>
+              <thead>
+                  <tr>
+                      <th rowspan="1" colspan="1"> </th>
+                      <th rowspan="1" colspan="1">表头</th>
+                      <td rowspan="1" colspan="1"> </td>
+                  </tr>
+              </thead>
+              <tfoot>
+                  <tr>
+                      <th rowspan="1" colspan="1"> </th>
+                      <th rowspan="1" colspan="1"> </th>
+                      <th rowspan="1" colspan="1">表底</th>
+                  </tr>
+              </tfoot>
+              <tbody>
+                  <tr>
+                      <td rowspan="1" colspan="1">单元格一</td>
+                      <td rowspan="1" colspan="1">单元格二</td>
+                      <td rowspan="1" colspan="1">单元格三</td>
+                  </tr>
+                  <tr>
+                      <td rowspan="1" colspan="1">11</td>
+                      <td rowspan="1" colspan="1">12</td>
+                      <td rowspan="1" colspan="1">13</td>
+                  </tr>
+                  <tr>
+                      <td rowspan="1" colspan="1"> </td>
+                      <td rowspan="1" colspan="1">22</td>
+                      <td rowspan="1" colspan="1">23</td>
+                  </tr>
+                  <tr>
+                      <td rowspan="1" colspan="1">31</td>
+                      <td rowspan="1" colspan="1"> </td>
+                      <td rowspan="1" colspan="1"> </td>
+                  </tr>
+              </tbody>
+          </informaltable>
+          <screen>&lt;table>
+  &lt;title>表格实例&lt;/title>
+  &lt;tgroup cols="3">
+    &lt;thead>&lt;row>&lt;entry>&lt;/entry>&lt;entry>表头&lt;/entry>&lt;/row>&lt;/thead>
+    &lt;tfoot>&lt;row>&lt;entry>&lt;/entry>&lt;entry>&lt;/entry>&lt;entry>表底&lt;/entry>&lt;/row>&lt;/tfoot>
+  &lt;tbody>
+    &lt;row>
+        &lt;entry>单元格一&lt;/entry>
+        &lt;entry>单元格二&lt;/entry>
+        &lt;entry>单元格三&lt;/entry>
+    &lt;/row>
+    &lt;row>
+	&lt;entry>11&lt;/entry>
+	&lt;entry>12&lt;/entry>
+	&lt;entry>13&lt;/entry>
+    &lt;/row>
+    &lt;row>
+	&lt;entry>&lt;/entry>
+	&lt;entry>22&lt;/entry>
+	&lt;entry>23&lt;/entry>
+    &lt;/row>
+    &lt;row>
+	&lt;entry>31&lt;/entry>
+    &lt;/row>
+  &lt;/tbody>
+  &lt;/tgroup>
+&lt;/table>
+  </screen>
+      </section>
+   <section>
+       <info>
+           <title>跨行表格</title>
+       </info>
+       
+       <informaltable border="1">
+           <colgroup span="1">
+               <col/>
+               <col/>
+               <col/>
+           </colgroup>
+           <tbody>
+               <tr>
+                   <td rowspan="2" colspan="1">跨两行</td>
+                   <td rowspan="1" colspan="1">12</td>
+                   <td rowspan="1" colspan="1">13</td>
+               </tr>
+               <tr>
+                   <td rowspan="1" colspan="1">22</td>
+                   <td rowspan="1" colspan="1">23</td>
+               </tr>
+               <tr>
+                   <td rowspan="1" colspan="1">31</td>
+                   <td rowspan="3" colspan="1">跨三行</td>
+                   <td rowspan="1" colspan="1">33</td>
+               </tr>
+               <tr>
+                   <td rowspan="1" colspan="1">41</td>
+                   <td rowspan="2" colspan="1">跨两行</td>
+               </tr>
+               <tr>
+                   <td rowspan="1" colspan="1">51</td>
+               </tr>
+           </tbody>
+       </informaltable>
+       <screen>&lt;table>
+  &lt;title>跨行表格&lt;/title>
+  &lt;tgroup cols="3">
+    &lt;tbody>
+	  &lt;row>
+	    &lt;entry morerows="1"1><co xml:id="morerows"/>跨两行&lt;/entry>&lt;entry>12&lt;/entry>&lt;entry>13&lt;/entry>
+	  &lt;/row>
+	  &lt;row>
+	   <co xml:id="entry1"/> &lt;entry>22&lt;/entry>&lt;entry>23&lt;/entry>
+	  &lt;/row>
+	  &lt;row>
+	    &lt;entry>31&lt;/entry>&lt;entry morerows="2">跨三行&lt;/entry>&lt;entry>33&lt;/entry>
+	  &lt;/row>
+	  &lt;row>
+	    &lt;entry>41&lt;/entry>3&lt;entry morerows="1">跨两行&lt;/entry>
+	  &lt;/row>
+	  &lt;row>
+	    &lt;entry>51&lt;/entry>
+	  &lt;/row>
+    &lt;/tbody>
+  &lt;/tgroup>
+&lt;/table>  </screen>
+       <calloutlist>
+           <callout arearefs="morerows">
+               <para> 使用<emphasis role="bold">morerows="N"</emphasis>合并下方的N个单元格 </para> 
+           </callout>
+           <callout arearefs="entry1">
+                <para> 由于该行第一个单元格已经被合并，所以应在这里出现的<emphasis role="bold">entry</emphasis>元素取消 </para>
+               <para> </para> 
+           </callout>
+       </calloutlist>
+   </section>
+    <section>
+        <info>
+            <title>跨列表格</title>
+        </info>
+        <informaltable border="1">
+            <colgroup span="1">
+                <col/>
+                <col/>
+                <col/>
+                <col/>
+            </colgroup>
+            <tbody>
+                <tr>
+                    <td rowspan="1" colspan="2">第一个单元格</td>
+                    <td rowspan="1" colspan="1">第三个单元格</td>
+                    <td rowspan="1" colspan="1">第四个单元格</td>
+                </tr>
+                <tr>
+                    <td rowspan="1" colspan="1">第一个单元格</td>
+                    <td rowspan="1" colspan="3">第二个单元格</td>
+                </tr>
+                <tr>
+                    <td rowspan="1" colspan="1">第一个单元格</td>
+                    <td rowspan="1" colspan="1">第二个单元格</td>
+                    <td rowspan="1" colspan="1">第三个单元格</td>
+                    <td rowspan="1" colspan="1">第四个单元格</td>
+                </tr>
+            </tbody>
+        </informaltable>
+        <screen>&lt;table>
+  &lt;title>跨列表格&lt;/title>
+  &lt;tgroup cols="4">
+&lt;colspec colnum="1" <co xml:id="colnum"/>  colname="1"  <co xml:id="colname"/> />
+&lt;colspec colnum="2" colname="2"/>
+&lt;colspec colnum="3" colname="3"/>
+&lt;colspec colnum="4" colname="4"/>	
+    &lt;tbody>
+	  &lt;row>
+	    &lt;entry namest="1"  <co xml:id="namest"/> nameend="2"  <co xml:id="nameend"/> >第一个单元格&lt;/entry>&lt;entry>第三个单元格&lt;/entry>&lt;entry>第四个单元格&lt;/entry>
+	  &lt;/row>
+	  &lt;row>
+	    &lt;entry>第一个单元格&lt;/entry>&lt;entry namest="2" nameend="4">第二个单元格&lt;/entry>
+	  &lt;/row>
+	  &lt;row>
+	    &lt;entry>第一个单元格&lt;/entry>&lt;entry>第二个单元格&lt;/entry>&lt;entry>第三个单元格&lt;/entry>&lt;entry>第四个单元格&lt;/entry>
+	  &lt;/row>
+    &lt;/tbody>
+  &lt;/tgroup>
+&lt;/table></screen>
+        <calloutlist>
+            <callout arearefs="colnum">
+                <para> 列编号 </para>
+            </callout>
+            <callout arearefs="colname">
+                <para> 列名 </para>
+            </callout>
+            <callout arearefs="namest">
+                <para> 跨列单元格的起始列，用列名指定 </para>
+            </callout>
+            <callout arearefs="nameend">
+                <para> 跨列单元格的结束列 </para>
+            </callout>
+        </calloutlist>
+    </section>
+</section>

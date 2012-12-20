@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://www.oasis-open.org/docbook/xml/5.0/rng/docbook.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<section xmlns="http://docbook.org/ns/docbook"
+    xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xi="http://www.w3.org/2001/XInclude" version="5.0">
+    <info>
+        <title>连接图形集模型 ContentsModel 和它的控制器 ContentsEditPart </title>
+    </info>
+    <para>  说起来我都觉得烦，我们又要在 PartFactory.java 中连接图形集模型 ContentsModel 和它的控制器
+    ContentsEditPart 了。以后我们要在 PartFactory.java中连接 n 多咚咚和它们的控制器。添加代码如下：</para>
+    <programlisting language="java">
+	/**
+	 * 根据模型类型创建控制器
+	 * @param model
+	 * @return 控制器
+	 */
+	private EditPart getPartForElement(Object model) {
+		if(model instanceof HelloModel){
+			return new HelloEditorPart();
+		}else if(model instanceof ContentModel){
+			return new ContentsEditPart();
+		}
+		throw new RuntimeException("Can't create part for model element: "
+				+ ((model != null) ? model.getClass().getName()
+						: "null"));
+	}
+        
+    </programlisting>
+</section>

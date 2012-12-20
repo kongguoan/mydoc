@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://www.oasis-open.org/docbook/xml/5.0/rng/docbook.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<section xmlns="http://docbook.org/ns/docbook"  xmlns:xi="http://www.w3.org/2001/XInclude"
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    <info>
+        <title>设置布局管理器 </title>
+      
+    </info>
+    <para>布局管理器有很多种，我们这里就用一种：org.eclipse.draw2d.XYLayout。这种布局管理器允许图形自
+    由地移动。 </para>
+    <programlisting language="java">
+        <xi:include href="../../source/step5/step5-1.java" parse="text" language="java"/>
+      </programlisting>
+</section>

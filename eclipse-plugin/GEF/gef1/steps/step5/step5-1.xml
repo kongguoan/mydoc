@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://www.oasis-open.org/docbook/xml/5.0/rng/docbook.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<article xmlns="http://docbook.org/ns/docbook"  xmlns:xi="http://www.w3.org/2001/XInclude"
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    <info>
+        <title>布局管理器 </title>
+    </info>
+    <para> GEF 应用使用的是 Draw2D 的布局管理器，所以 GEF 的布局管理器和 Draw2D 的布局管理器几乎相
+        同。但是，GEF中图形在视图中的位置和图形的大小是由其模型定义的，因此他们有点不同。关于 Draw2D
+        的布局管理器我们在以后的教程中介绍。 </para>
+    <xi:include href="step5-2.xml"/>
+    <xi:include href="step5-3.xml"/>
+    <xi:include href="step5-4.xml"/>
+    <xi:include href="step5-5.xml"/>
+</article>
