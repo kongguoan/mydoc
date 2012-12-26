@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://www.oasis-open.org/docbook/xml/5.0/rng/docbook.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<set xmlns="http://docbook.org/ns/docbook" xmlns:xi="http://www.w3.org/2001/XInclude"
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    <info>
+        <title>整理文档</title>
+        <author>     
+          <personname>myking520</personname>
+            <email>158520812@qq.com</email>
+        </author>
+    </info>
+    <xi:include href="codeQuality/index.xml"/>
+    <xi:include href="eclipse-plugin/index.xml"/>
+    <xi:include href="docbook/index.xml"/>
+    <xi:include href="ICONIX/index.xml"/>
+    <xi:include href="eclipse-plugin/index.xml"/>
+</set>

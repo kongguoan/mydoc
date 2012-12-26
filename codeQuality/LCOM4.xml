@@ -8,9 +8,9 @@
     </info>
     <section>
         <title>说明</title>
-        <screen>LCOM4用来说明class内部方法和变量之间的关系, 值越大, 说明内聚<co xml:id="co1"/>性越差. 一般情况下 LCOM4=0 说明类没有任何方法是个不好的类。LCOM4=1是内聚性最佳的. LCOM4>=2说明可以拆成多个小类</screen>
+        <screen>LCOM4用来说明class内部方法和变量之间的关系, 值越大, 说明内聚<co xml:id="lcom4_co1"/>性越差. 一般情况下 LCOM4=0 说明类没有任何方法是个不好的类。LCOM4=1是内聚性最佳的. LCOM4>=2说明可以拆成多个小类</screen>
         <calloutlist>
-            <callout arearefs="co1">
+            <callout arearefs="lcom4_co1">
                 <para>内聚是指一个类中的方法的紧密程度。当一个类中的两个方法不使用一个共同属性或者方法，这意味着它们没有任何共用的东西或者它们就不应该属于同一个类。换句话说，你应该把这个类分解为多个新类来达到类级别模块化的目的。</para>
             </callout>
         </calloutlist>
