@@ -13,5 +13,4 @@
     <xi:include href="steps/step6/step6-1.xml"/>
     <xi:include href="steps/step7/step7-1.xml"/>
     <xi:include href="steps/step8/step8-1.xml"/>
-    <xi:include href="steps/step9/step9-1.xml"/>
 </book>

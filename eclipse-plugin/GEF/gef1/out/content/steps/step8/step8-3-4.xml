@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://www.oasis-open.org/docbook/xml/5.0/rng/docbook.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<section xmlns="http://docbook.org/ns/docbook"
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    <info>
+        <title>调用创建模型的 Command</title>
+    </info>
+    <para>然后就是毫无悬念的在 XYLayoutEditPolicy中调用创建模型的 CreateCommand， 这是因
+    为在这个 Policy中有 CreateRequest 请求。 </para>
+    <programlisting language="java">public class CustomXYLayoutEditPolicy extends XYLayoutEditPolicy { 
+.....
+protected Command getCreateCommand(CreateRequest request) { 
+     CreateCommand command = new CreateCommand(); 
+     // 产生创建图形的尺寸和位置 
+     Rectangle constraint = (Rectangle) getConstraintFor(request); 
+     // 获得新创建的图形 
+     HelloModel model = (HelloModel) request.getNewObject(); 
+     // 为该图形设置前面获得的位置和尺寸 
+     model.setConstraint(constraint); 
+     // 将新创建的图形添加到模型中， 
+// 因为我们在第 2 页的（2）中已经把模型更改和它们的 Editpart 联系起来， 
+// 因此，Graphical Editor中的图形也会发生变化 
+     command.setContentsModel(getHost().getModel()); 
+     command.setHelloModel(model); 
+     return command; 
+ } 
+.....
+}
+        
+    </programlisting>
+    <para>执行一下。选择“创建 HelloModel模型”工具在 Graphical Editor上就会出现一个带加
+        号的光标（这个光标是在 CreationTool 中提供的，见下面代码） ，在某位置单击就会创建一
+        个新的 HelloModel 图形，该图形的尺寸是由图形中的字符串来决定的。而如果你在创建新
+        的 HelloModel 图形时拖动鼠标，那么图形的尺寸由拖动决定。如下图所示。 </para>
+    <programlisting language="java"> public CreationTool() { 
+     setDefaultCursor(SharedCursors.CURSOR_TREE_ADD); 
+     setDisabledCursor(SharedCursors.NO); 
+} 
+    </programlisting>
+    <mediaobject>
+        <imageobject>
+            <imagedata fileref="../../images/step8/step8-4.jpg"/>
+        </imageobject>
+    </mediaobject>
+    <para>总结一下：要想做事，就要创建相应的 Command，并且更重要的是，还要知道把这些
+        Command放到合适的Policy中。 在http://help.eclipse.org/help31/index.jsp的GEF Programmer's
+        Guide 中的 Editing and Edit Policies 中提供了一些 Command 和 Policy的对应表。 </para>
+    <para>  大家可以想想为什么删除图形的工具按钮放在工具条中， 而添加图形的按钮放在 Palette
+        中。其实我觉得 Delete要比 Create简单。所以GEF把它们放在不同地方，也符合用户的习
+        惯。 </para>
+</section>

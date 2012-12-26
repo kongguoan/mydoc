@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://www.oasis-open.org/docbook/xml/5.0/rng/docbook.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<article xmlns="http://docbook.org/ns/docbook"
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    <info>
+        <title>键盘操作直接编辑文本 </title>
+      
+    </info>
+    <para>涉及到键盘操作就要用 Action 处理，这个 Action 可以利用 GEF 提供的
+        DirectEditAction。创建和注册该 Action 可以在 GraphicalEditor#createActions 中完成。
+        在 DiagramEditor中，我们要重载 createActions方法。 </para>
+    <programlisting language="java">public class DiagramEditor extends GraphicalEditorWithPalette {
+..........
+	@Override
+	protected void createActions() {
+		super.createActions();
+		ActionRegistry registry = getActionRegistry();
+		 // 创建并注册一个 DirectEditAction 
+		IAction action = new DirectEditAction(this);
+		registry.registerAction(action);
+		 // 当一个 action 需要由选择对象更新时，需要注册其 ID
+		getSelectionActions().add(action.getId());
+	}
+
+..........
+
+}
+        
+    </programlisting>
+    <para>因为 DirectEditAction 被注册到 action registry 中，该 action 通过 keystroke 和
+        editor 联系起来。Keystroke 是由 org.eclipse.gef.KeyHandler 管理的。下面我们添加 Del
+        键删除图形和 F2 键编辑图形，这部分代码在 DiagramEditor 的 configureGraphicalViewer
+        中实现。 </para>
+    <programlisting language="java">public class DiagramEditor extends GraphicalEditorWithPalette {
+..........
+	@Override
+	protected void configureGraphicalViewer() {
+		super.configureGraphicalViewer();
+		GraphicalViewer viewr;
+		viewr = this.getGraphicalViewer();
+		viewr.setEditPartFactory(new PartFactory());
+		// 创建键盘句柄 keyhander 
+		KeyHandler keyHandler = new KeyHandler();
+		 // 按 DEL 键时执行删除 Action 
+		keyHandler.put(KeyStroke.getPressed(SWT.DEL, 127, SWT.NONE),
+				getActionRegistry().getAction(ActionFactory.DELETE.getId()));
+		 // 按 F2 键时执行直接编辑 Action 
+		keyHandler.put(KeyStroke.getPressed(SWT.F2, SWT.NONE),
+				getActionRegistry().getAction(GEFActionConstants.DIRECT_EDIT));
+		 // 为当前 GraphicalView 设置 keyhandler 
+		getGraphicalViewer().setKeyHandler(
+				new GraphicalViewerKeyHandler(getGraphicalViewer())
+						.setParent(keyHandler));
+	}
+..........
+
+}    </programlisting>
+    <para>现在运行程序就可以用 Del 键删除图形，用 F2 键修改文本了。如果你用下面的代码取
+        代 getGraphicalViewer().setKeyHandler(keyHandler);，则可以用方向键来选择不同的图形。可
+        以自己试一下。 </para>
+    <para>getGraphicalViewer().setKeyHandler(new GraphicalViewerKeyHandler( 
+    getGraphicalViewer()).setParent(keyHandler)); </para>
+    <note><para>去看看 RequestConstants 常数中都提供了那些 Request。嘿嘿，这里的
+        REQ_SELECTION_HOVER 我觉得挺有用的。 </para></note>
+</article>

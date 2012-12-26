@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://www.oasis-open.org/docbook/xml/5.0/rng/docbook.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<section xmlns="http://docbook.org/ns/docbook"
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    <info>
+        <title>安装 editing policy </title>
+
+    </info>
+    <para>因为我们前面在ContentsEditPart中设置的XYLayout， 所以我们在ContentsEditPart的createEditPolicies 
+    方法中安装 CustomXYLayoutEditPolicy。 </para>
+    <para>在ContentsEditPart添加一下代码</para>
+    <programlisting language="java">
+        
+    @Override
+	protected void createEditPolicies() {
+		installEditPolicy(EditPolicy.LAYOUT_ROLE, new CustomXYLayoutEditPolicy());
+	}
+    </programlisting>
+    <para>  注意， 上面 installEditPolicy的第一个参数是个字符串变量， 它指定了安装的 editing policy的角色 Role。
+        这里我们用了 EditPolicy的一个常量来表示这个 editing policy的角色。之所以设置这个变量是因为：一个
+        EditPart 可以安装很多 editing policies，如果他们的角色都相同，就是这个字符串参数相同，那么就只有最
+        后安装的一个 policy 是有效的。其实这个字符串变量可以为任意值，用 EditPolicy 的常量就是为了统一、
+        清楚。不信你可以改为 installEditPolicy(“够日的小日本”, new CustomXYLayoutEditPolicy());试试。 </para>
+    <para>如果安装了 CustomXYLayoutEditPolicy，就可以选择图形的句柄(handler)了。 </para>
+    <mediaobject>
+        <imageobject>
+            <imagedata fileref="../../images/step6/step6-3.jpg"/>
+        </imageobject>
+    </mediaobject>
+    <para>如果我们拖动句柄改变尺寸或者选择图形改变位置，会发现我们未遂。这是因为我们根本没有执行任
+        何命令去做这些事情，而是我们可以做这些事情了。 
+    </para>
+    <mediaobject>
+        <imageobject>
+            <imagedata fileref="../../images/step6/step6-4.jpg"/>
+        </imageobject>
+    </mediaobject>
+    <para> 
+        在我们创建改变图形大小和尺寸的命令前，你是不是纳闷我们上面拖动句柄和拖动图形到底产生了什
+        么请求 Request 呢？如果你想知道的话，可以在 CustomXYLayoutEditPolicy 中重载 getCommand 方法，在
+        控制台打印出相应的请求。 </para>
+    <programlisting language="java">
+   public Command getCommand(Request request) { 
+    System.out.println(request.getType()); 
+    return super.getCommand(request); 
+  }         
+    </programlisting>
+</section>

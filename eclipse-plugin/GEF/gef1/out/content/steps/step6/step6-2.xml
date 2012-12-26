@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://www.oasis-open.org/docbook/xml/5.0/rng/docbook.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<section xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+    version="5.0">
+    <info>
+        <title>内容提要</title>
+    </info>
+    <para>内容提要： </para>
+    <para>（1）使用 XYLayout 布局 </para>
+    <para>（2）Edit 操作图形，譬如通过句柄改变图形尺寸，移动图形</para>
+    <para> （3）创建和安装 editing policy，用于改变图形尺寸，移动图形 </para>
+    <para>（4）创建和执行命令 Command，用于改变图形尺寸，移动图形 </para>
+    <para>（5）Undo和 Redo 的操作 </para>
+    <para>          这章开始涉及到 Policy、Command、Role 等概念了。当模型改变时（譬如这里的 HelloWorld 改变尺寸 或改变位置） ，要产生请求
+        Request(org.eclipse.gef.Request)，然后这请求就发送给模型对应的 EditPart（前 面讲过一个模型就对应一个EditPart） ，
+        在EditPart中安装有Editing Policy， 当然在EditPart中的Editing Policy 不只一个，所以应该是 Editing Policies。Editing
+        Policy的作用就是管理一些 Commond命令，而这些命令就 是满足上面的请求的。Editing Policy在 Eclipse的GEF开发指南部分有对应表。 </para>
+    <para>         为了使大家明白的快点，我想举一个不恰当的例子来说明他们之间的关系。譬如说我自己就是一个模 型 Model，我老婆是对应于我的 EditPart（控制器）
+        。我想买个数码相机（Model changing）呢，那我就产 生了相关的请求 Request，这些请求发送给我老婆 EditPart，当然我家有很多 Policies
+        规矩，这些规矩是我 老婆掌握（相当于把 Policies 安装到 EditPart） ，我老婆一看我家正好有相关的 Policy，就把这个 Policy 誊 在纸上拿给我（派生一个
+        Policy类） 。 （注意这个Policy可不光管理买相机的命令 BuyCommand，可能还包 括如何处理我原来的相机 DeleteCommand 等等。
+        ）然后就说你去买吧，先执行 BuyCommand 命令。我当然 有执行命令的一系列步骤了（譬如说比价，侃价等） ，然后就乐颠颠买到相机了。 </para>
+    <para>       好，不管你明白不明白，我们首先介绍一下本节创建的类吧： </para>
+    <itemizedlist>
+        <listitem><para>首先，我们要有规矩，就是 Policy；</para></listitem>
+        <listitem><para>然后把一个或多个 Policy 安装给 EditPart </para></listitem>
+        <listitem><para>然后我们要根据请求创建命令 Command  </para></listitem>
+        <listitem><para> 然后在每个 Policy的框架下执行（一个或多个）命令</para></listitem>
+    </itemizedlist>
+    <para>       当然，执行完命令的模型满足了请求，发生了改变，就要通知控制器 EditPart，否则控制器不知道模
+    型改变呢，就无法通知视图来正确显示。就像上面的例子中，买了相机后就要通知老婆一下，我已经买了。 至于如何通知，我们后面再说。 </para>
+    <mediaobject>
+        <imageobject>
+            <imagedata fileref="../../images/step6/step6-1.jpg"/>
+        </imageobject>
+    </mediaobject>
+    <para>为了改变我们图形的尺寸和移动图形，我们都创建和修改了哪些类呢？看下图： </para>
+    <mediaobject>
+        <imageobject>
+            <imagedata fileref="../../images/step6/step6-2.jpg"/>
+        </imageobject>
+    </mediaobject>
+    <para>  至于说我怎么知道改变图形尺寸要创建 XYLayoutEditPolicy而不是其他的 Policy呢，那说明你没好好
+        看 Eclipse 在线帮助的 GEF Programmer's Guide。GEF的 EditPolicy包含在 org.eclipse.gef.editpolicies包中。  </para>
+</section>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://www.oasis-open.org/docbook/xml/5.0/rng/docbook.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<section xmlns="http://docbook.org/ns/docbook"
+    xmlns:xlink="http://www.w3.org/1999/xlink"   xmlns:xi="http://www.w3.org/2001/XInclude"  version="5.0">
+    <info>
+        <title>为图形集添加子集 </title>
+       
+    </info>
+    <para>  如果我们不仅仅是绘制 Hello World的话，那仅有 HelloModel 是不够的。我们还要有一个上层模型，
+        就是前面创建的图形集模型 ContentsModel。图形集模型 ContentsModel 和图形 HelloModel 之间是父子关
+        系（不是继承和派生关系，而是一个包含多个的关系） 。GEF 提供了一个框架来实现这个父子关系，后面
+        我们会谈到。这里我们先充实这个父模型。 </para>
+</section>
