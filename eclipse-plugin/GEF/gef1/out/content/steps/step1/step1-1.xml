@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://www.oasis-open.org/docbook/xml/5.0/rng/docbook.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<article xmlns="http://docbook.org/ns/docbook"
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+
+        <title>建立一个RCP工程</title>
+
+   
+    <section>
+        <title>创建plugin-in project</title>
+        <para>GEF可以建立在 Eclipse的 View中，不过最普通的是建立在 Editor中，我想这是因为 Editor提供了文
+            件的保存机制吧。其实 View和 Editor 的区别很难讲，有兴趣的可以看看 RCP那本书。 
+            我们这里的教程就是把 GEF建立在 RCP之上。所以我们要先建立一个 RCP工程。 </para>
+        <section>
+            <title>选择plugin-in project</title>
+          
+                <mediaobject>
+                    <imageobject>
+                        <imagedata fileref="../../images/step1/step1-1.jpg"/>
+                    </imageobject>
+                </mediaobject>
+        </section>
+        <section>
+            <title>Project name 为 gef.tutorial.step </title>
+            <mediaobject>
+                <imageobject>
+                    <imagedata fileref="../../images/step1/step1-2.jpg"/>
+                </imageobject>
+            </mediaobject>
+        </section>
+        <section>
+            <title>在 Rich Client Application中选择 Ye s </title>
+            <mediaobject>
+                <imageobject>
+                    <imagedata fileref="../../images/step1/step1-3.jpg"/>
+                </imageobject>
+            </mediaobject>
+        </section>
+        <section>
+            <title>选择 Hello RCP，单击 Finish 结束</title>
+            <mediaobject>
+                <imageobject>
+                    <imagedata fileref="../../images/step1/step1-4.jpg"/>
+                </imageobject>
+            </mediaobject>
+        </section>
+        <section>
+            <title>设置 plug-in工程的 Dependability</title>
+            <para>为了使用 GEF，我们需要给这个工程加上 org.eclipse.gef (3.1.0)。打开 plugin.xml 文件，在 dependencies页
+                面中单击 Add…找到 org.eclipse.gef,OK后就加上了</para>
+            <mediaobject>
+                <imageobject>
+                    <imagedata fileref="../../images/step1/step1-5.jpg"/>
+                </imageobject>
+            </mediaobject>
+        </section>
+    </section>
+ 
+</article>

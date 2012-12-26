@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://www.oasis-open.org/docbook/xml/5.0/rng/docbook.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<article xmlns="http://docbook.org/ns/docbook"
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    <info>
+        <title>圈复杂度(Cyclomatic Complexity)</title>
+     
+    </info>
+  <section>
+      <title>什么是圈复杂度</title>
+      <para>圈复杂度(Cyclomatic Complexity)是一种代码复杂度的衡量标准。它可以用来衡量一个模块判定结构的复杂程度，数量上表现为独立现行路径条数，也可理解为覆盖所有的可能情况最少使用的测试用例数。圈复杂度大说明程序代码的判断逻辑复杂，可能质量低且难于测试和维护。程序的可能错误和高的圈复杂度有着很大关系。</para>
+    
+  </section>
+    <section>
+        <title>说明</title>
+        <para><table frame="all">
+                <title/>
+                <tgroup cols="2">
+                    <colspec colname="c1" colnum="1" colwidth="1.0*"/>
+                    <colspec colname="c2" colnum="2" colwidth="1.0*"/>
+                    <thead>
+                        <row>
+                            <entry>圈复杂度</entry>
+                            <entry>风险评价</entry>
+                        </row>
+                    </thead>
+                    <tbody>
+                        <row>
+                            <entry>1~10</entry>
+                            <entry>一个简单的程序，没有很大的风险</entry>
+                        </row>
+                        <row>
+                            <entry>11~20</entry>
+                            <entry>更复杂的、 适度的风险</entry>
+                        </row>
+                        <row>
+                            <entry>21~50</entry>
+                            <entry>复杂、 高风险程序</entry>
+                        </row>
+                        <row>
+                            <entry>50+</entry>
+                            <entry> 经不起测试程序 （非常高风险） </entry>
+                        </row>
+                    </tbody>
+                </tgroup>
+            </table>Cyclomatic complexity越大，软件的复杂度就越高，开发和维护软件的风险就越大，可测试性也越低。
+            当>10时，我们应该考虑程序本身的设计是否合理，是否存在缺陷。</para>
+    </section>
+    <section>
+        <title>计算公式</title>
+        <para> V = E − N + 2P </para>
+        <itemizedlist>
+            <listitem><para>E;边的数量（边就是连接线的数量）</para></listitem>
+            <listitem><para>N;节点数量</para></listitem>
+            <listitem><para>P:出口节点数量</para></listitem>
+        </itemizedlist>
+    </section>
+    <section>
+        <title>例子</title>
+      <section>
+          <title>例1</title>
+          <mediaobject>
+              <imageobject>
+                  <imagedata fileref="example-1.png"/>
+              </imageobject>
+          </mediaobject>
+          <para> E = 9, N = 8 and P = 1 所以V=9-8+1*2=3</para>
+      </section>
+        <section>
+            <title>例2</title>
+            <mediaobject>
+                <imageobject>
+                    <imagedata fileref="example-2.jpg"/>
+                </imageobject>
+            </mediaobject>
+            <para>E = 10, N = 8 and P = 1 所以V=10 - 8 + 1*2 = 4</para>
+        </section>
+        <section>
+            <title>例3</title>
+          <programlisting language="java">  public String case2(int index, String string) {
+
+       String returnString = null;
+
+       if (index &lt; 0) {
+
+           throw new IndexOutOfBoundsException("exception &lt;0 ");
+
+       }
+
+       if (index == 1) {
+
+           if (string.length() &lt; 2) {
+
+              return string;
+
+           }
+
+           returnString = "returnString1";
+
+       } else if (index == 2) {
+
+           if (string.length() &lt; 5) {
+
+              return string;
+
+           }
+
+           returnString = "returnString2";
+
+       } else {
+
+           throw new IndexOutOfBoundsException("exception >2 ");
+
+       }
+
+       return returnString;
+
+    }
+              
+          </programlisting>
+       <mediaobject>
+           <textobject><para>程序控制流图</para></textobject>
+                    <imageobject>
+                        <imagedata fileref="example-3.jpg"/>
+                    </imageobject>
+       </mediaobject>
+            <para> V(G) = e – n + 2 = 12 – 8 + 2 = 6 。case2的圈复杂段为6。说明一下为什么n = 8，虽然图上的真正节点有12个，但是其中有5个节点为throw、return，这样的节点为end节点，只能记做一个。</para>
+        </section>
+    </section>
+    <section>
+        <title>测试</title>
+        <section>
+            <title>测试步骤</title>
+            <itemizedlist>
+                <listitem><para>根据设计或代码，画控制流图</para></listitem>
+                <listitem><para>计算流图的cyclomatic number: V，即基本路径的个数</para></listitem>
+                <listitem><para>确定独立路径集</para></listitem>
+                <listitem><para>设计测试用例，保证基本路径集的路径都被遍历到</para></listitem>
+            </itemizedlist>
+        </section>
+        <section>
+            <title>确定基本路径集的算法</title>
+            <itemizedlist>
+                <listitem><para>选择一个基线路径，任意的路径，它表示一个典型的功能，并不只是错误或异常情况</para></listitem>
+                <listitem><para>定位决定的第一个节点的基准路径中，转到另一个决定分支，找到第二基础路径</para></listitem>
+                <listitem><para>.找到第二个决定节点的基准路径中，转到一个决定分支找到 3 基础路径</para></listitem>
+                <listitem><para>继续执行直到决定基准路径中的所有节点都被都遍历</para></listitem>
+                <listitem><para>按照第二个路径和遍历其决定的所有节点</para></listitem>
+                <listitem><para>继续直到发现了基础的所有路径</para></listitem>
+            </itemizedlist>
+            <warning>
+                <para>其他基础路径尝试尽可能接近的基准路径 ； 尽可能遵循这简化了测试输入的设计。</para>
+            </warning>
+        </section>
+    </section>
+    
+    <section>
+        <title>总结</title>
+        <para>对于一个结构化的程序（无GOTO）,可以通过下列方法确定V:</para>
+        <para>V=决策节点数量+1
+            <itemizedlist>
+            <listitem><para>IF=1决策节点</para></listitem>
+           <listitem><para>3个CASE=2决策节点</para></listitem>
+           <listitem><para>N个CASE=(n-1)决策节点</para></listitem>
+           <listitem><para>Loop=1决策节点</para></listitem>
+        </itemizedlist></para>
+    </section>
+</article>

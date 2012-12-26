@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://www.oasis-open.org/docbook/xml/5.0/rng/docbook.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<section xmlns="http://docbook.org/ns/docbook"  xmlns:xi="http://www.w3.org/2001/XInclude"
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    <info>
+        <title>在模型类中管理约束 </title>
+     
+    </info>
+  <para>
+      为了使用上面的 XYLayout，需要设置一下被该布局管理器管理的图形对象的尺寸和位置等，这就是
+      约束 Constraint。举个例子吧，如果你要在图形集中绘制一个矩形，那你就要有一个位置点（譬如你设置
+      左上点作为位置点）和一个尺寸（长和高） 。再说白一点，约束就是指出图形在图形集中的位置和大小。 
+      对图形集 ContentsModel 中的每个图形都要添加约束，因此约束被添加到他们的模型类中（记得我们
+      前面说过 Draw2D和 GEF布局管理器的不同之处吧） 。这里我们只有 Hello World 一个图形类，所以我们要
+      在 HelloModel 中添加约束。我们这里 HelloWorld 是写在 Label 上，所以我们就给出一个矩形 Rectangle 作
+      为约束。 
+      在模型中，约束是一些与实际业务无关的成员。 
+  </para>
+    <programlisting language="java">
+        <xi:include href="../../source/step5/step5-2.java" parse="text" language="java"/>
+      </programlisting>
+</section>

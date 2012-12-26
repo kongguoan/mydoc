@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://www.oasis-open.org/docbook/xml/5.0/rng/docbook.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<section xmlns="http://docbook.org/ns/docbook"
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    <info>
+        <title>创建 Command 和 DirectEditPolicy</title>
+        
+    </info>
+    <para>因为在Cell editor中改变HelloModel的文本实际上要在HelloWorld的模型中反应出来，
+        因此要重建一个 Command 和一个 Policy。我们要从 DirectEditPolicy 中派生一个类来用于
+        Editing policy。 </para>
+    <para>因为 Policy 中都是用于执行 Command 的，所以我们先创建一个 Command 类
+    DirectEditCommand。当然要放在 package  gef.tutorial.step.commands;包中</para>
+    <programlisting language="java">package gef.tutorial.step.commands;
+
+import gef.tutorial.step.model.HelloModel;
+
+import org.eclipse.gef.commands.Command;
+
+public class DirectEditCommand extends Command {
+
+	private String oldText, newText;
+
+	private HelloModel helloModel;
+
+	@Override
+	public void execute() {
+		// oldText 用于记录以前的文本 
+		oldText = helloModel.getText();
+		 // 设置为新的文本 
+		helloModel.setText(newText);
+	}
+
+	public void setModel(Object model) {
+		helloModel = (HelloModel) model;
+	}
+
+	public void setText(String text) {
+		newText = text;
+	}
+
+	@Override
+	public void undo() {
+		helloModel.setText(oldText);
+	}
+
+}
+
+        
+    </programlisting>
+    <para>从 DirectEditPolicy 派生一个 CustomDirectEditPolicy 类放在 package 
+    gef.tutorial.step.policies;包中。 </para>
+    <programlisting language="java">package gef.tutorial.step.policies;
+
+import gef.tutorial.step.commands.DirectEditCommand;
+
+import org.eclipse.gef.commands.Command;
+import org.eclipse.gef.editpolicies.DirectEditPolicy;
+import org.eclipse.gef.requests.DirectEditRequest;
+
+public class CustomDirectEditPolicy extends DirectEditPolicy {
+	/*
+	 * 当选中 cell editor，修改文本，cell editor 失去焦点之前执行 getDirectEditCommand方法
+	 */
+	@Override
+	protected Command getDirectEditCommand(DirectEditRequest request) {
+		DirectEditCommand command = new DirectEditCommand();
+		command.setModel(getHost().getModel());
+		// 从 cell editor 中得到 newText 来给 Figure 设置文本
+		command.setText((String) request.getCellEditor().getValue());
+		return command;
+	}
+
+	/*
+	 * showCurrentEditValue 方法用于显示 Figure 中的当前直接编辑值。 虽然
+	 * CellEditor可能盖住了图形对该值的显示，但是更新图形会使其最优尺寸适应新值
+	 */
+	@Override
+	protected void showCurrentEditValue(DirectEditRequest request) {
+
+	}
+
+}
+    </programlisting>
+    <para>把这个 Policy安装到 Editpart中。 </para>
+    <programlisting language="java">public class HelloEditorPart extends EditPartWithListener {
+    ..........
+	@Override
+	protected void createEditPolicies() {
+		installEditPolicy(EditPolicy.COMPONENT_ROLE,
+				new CustomComponentEditPolicy());
+		installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE,
+				new CustomDirectEditPolicy());
+	}
+    .........
+}
+        
+    </programlisting>
+    <para> 
+        现在运行一下程序，当第 2 次单击鼠标时，就可以编辑文本了
+      </para>
+</section>

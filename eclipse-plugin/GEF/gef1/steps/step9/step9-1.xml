@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://www.oasis-open.org/docbook/xml/5.0/rng/docbook.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<article xmlns="http://docbook.org/ns/docbook" xmlns:xi="http://www.w3.org/2001/XInclude"
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    <info>
+        <title>属性视图和直接编辑文本</title>
+    </info>
+ <section><title>内容提要</title>
+    <itemizedlist>
+        <listitem><para>显示属性 Properties视图</para></listitem>
+        <listitem><para>在 Properties中修改图形属性。</para></listitem>
+        <listitem><para>直接编辑图形属性，这里是修改文本框中的文字</para></listitem>
+    </itemizedlist>
+ </section>
+    <xi:include href="step9-2.xml"/>
+    <xi:include href="step9-3.xml"/>
+</article>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://www.oasis-open.org/docbook/xml/5.0/rng/docbook.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<section xmlns="http://docbook.org/ns/docbook"
+    xmlns:xlink="http://www.w3.org/1999/xlink"  xmlns:xi="http://www.w3.org/2001/XInclude"  version="5.0">
+    <title>创建模型 </title>
+    <para>首先我们创建最基本的模型，因为我们现在只想在 Diagram Editor中显示 Hello World 就好，所以我们
+    只有一个模型，我们把这个模型放在 gef.tutorial.step.model 包中。 </para>
+    <programlisting language="java">
+        <xi:include href="../../source/step3/step3-1.java" parse="text" language="java"/>
+      </programlisting>
+</section>
