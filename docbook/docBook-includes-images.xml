@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://www.oasis-open.org/docbook/xml/5.0/rng/docbook.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<section xmlns="http://docbook.org/ns/docbook"
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    <info>
+        <title>DocBook使用XIncludes指定图像路径的方法 </title>
+      
+    </info>
+<screen>    &lt; book  …         xml:base="./"> 
+   ......     
+&lt; xi:include   href = "chapter_overview.xml"   />       </screen>
+    <para>  在使用XIncludes导入chapter_overview.xml时，XSL处理器将在该文件的路径前添加xml.base，因此就成为
+        “./chapter_overview.xml”，这表示chapter_overview.xml在&lt;book&gt;元素所在文档的同一目录 下。 </para>
+    <para> 这是XIncludes的基本用法。 </para>
+    <para> 但在使用XIncludes查找图像时，却非简单。生成HTML或PDF时，XSL查找图像时基于以下条件进行： </para>
+    <para>
+        <orderedlist>
+            <listitem>
+                <para>如果是绝对路径，则按绝对路径来查找。</para>
+            </listitem>
+            <listitem>
+                <para>如果是相对路径，且未使用XIncludes，则按fileref指定的路径查找。</para>
+            </listitem>
+            <listitem>
+                <para>如果是相对路径，但使用XIncludes，且keep.relative.image.uris="1"，则按fileref指定的路径查找。</para>
+            </listitem>
+            <listitem>
+                <para>如果是相对路径，但使用XIncludes，且keep.relative.image.uris="0"，则按xml:base +
+                    fileref指定的路径查找。</para>
+            </listitem>
+        </orderedlist>
+    </para>
+    <para> 此外，生成HTML时keep.relative.image.uris默认值为1;而生成PDF时keep.relative.image.uris默认值为0。 </para>
+    <para>
+        因此，当使用了XIncludes后，设有一个名为test.xml的文件（被上述&lt;book&gt;所在文档通过XIncludes包含）通过fileref指定了一个相对的图像路径： </para>
+    <screen>    &lt; imagedata   fileref = "images/custom/test.jpg"   />       </screen>
+    <para>在生成HTML时，keep.relative.image.uris默认值为1，符合第3种情况，则直接按fileref指定的路径"images/custom/test.jpg"来查找，该路径相对于所生成的HTML文件。因此，只要文件路径符合下列条件：</para>
+    <para>test.html</para>
+    <para> images</para>
+    <para>     |--&gt; custom</para>
+    <para>                 |--&gt; test.jpg</para>
+    <para>图像就能正常显示。</para>
+    <para>而在生成PDF时，由于keep.relative.image.uris默认值为0，符合第4种情况，则在计算路径时需添加xml:base的前
+        缀。但xml:base值为“./”，是相对于xml文件所在的路径而非相对于所生成的PDF文件所在的路径，因此当我们需要在另外一个目录，如
+        Dist，中生成PDF时，则导致找不到相应的图像。这就导致了使用同一标签</para>
+    <screen>    &lt; imagedata   fileref = "images/custom/test.jpg"   />       </screen>
+    <para> 生成HTML时图像正常，而生成PDF却找不到图像。
+    解决的方法是在生成PDF的XSL文件中通过指定img.src.path的方式，可以让处理器相对于所生成的PDF文件的路径来查找图像。 </para>
+    <screen>    &lt; xsl:param   name = "img.src.path" > Dist/pdf/ &lt;/ xsl:param >       </screen>
+    <para>
+        加上上面的配置后，fileref的路径就会变成"Dist/pdf/images/custom/test.jpg",且是相对于所生成的PDF所在的路径。因此，只要生成的PDF文件路径符合下列条件： </para>
+<screen> Dist     |--&gt; pdf              
+                 |--&gt; test.pdf    
+             |--&gt; images                       
+                             |--&gt; custom        
+                                                      |--&gt; test.jpg  </screen>
+    <para>生成的PDF文件就能正确地将图像加进来。 </para>
+    <para>再进一步观察HTML及PDF图像所在的路径，均为</para>
+    <screen> images    
+ |--&gt; custom       
+          |--&gt;test.jpg </screen>
+    <para>因此，</para>
+    <screen>   &lt; imagedata   fileref = "images/custom/test.jpg"   /&gt;     </screen>
+    <para> 总能简化为： </para>
+    <screen>    &lt; imagedata   fileref = "test.jpg"   />       </screen>
+    <para>当然，生成PDF的XSL文件需改为：</para>
+    <screen>    &lt; xsl:param   name = "img.src.path" > Dist/pdf/images/custom/ &lt;/ xsl:param >       </screen>
+    <para>而生成HTML的XSL文件需改为：</para>
+    <screen>    &lt; xsl:param   name = "img.src.path" > images/custom/ &lt;/ xsl:param >       </screen>
+    <para>这样，既可以简化了图像文件的引用路径，且可以确保同时适用于HTML及PDF的正确生成。 </para>
+</section>

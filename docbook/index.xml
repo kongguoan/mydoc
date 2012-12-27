@@ -4,7 +4,7 @@
 <book xmlns="http://docbook.org/ns/docbook"
     xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
     <info>
-        <title>使用方法</title>
+        <title>DocBook</title>
        <author>
            <personname>myking</personname>
            <email>myking520@gmail.com</email>
@@ -16,4 +16,6 @@
     <xi:include href="docBook-introduction.xml" xmlns:xi="http://www.w3.org/2001/XInclude" />
    
     <xi:include href="docBook-begin.xml" xmlns:xi="http://www.w3.org/2001/XInclude" />
+   
+   
 </book>

@@ -11,6 +11,7 @@
     <xi:include href="docBook-setup.xml" xmlns:xi="http://www.w3.org/2001/XInclude" />
     <xi:include href="docBook-beginDoc.xml" xmlns:xi="http://www.w3.org/2001/XInclude" />
     <xi:include href="docBook-partElement.xml" xmlns:xi="http://www.w3.org/2001/XInclude" />
+    <xi:include href="docBook-includes-images.xml" xmlns:xi="http://www.w3.org/2001/XInclude" />
    <section>
        <info>
            <title>分子元素</title>
