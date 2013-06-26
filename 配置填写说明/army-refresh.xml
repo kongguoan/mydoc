@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://www.oasis-open.org/docbook/xml/5.0/rng/docbookxi.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<article xmlns="http://docbook.org/ns/docbook"
+        xmlns:xi="http://www.w3.org/2001/XInclude"
+        xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    <info>
+        <title>军队刷新</title>
+    </info>
+    <section>
+        <title>配置说明</title>
+        <informaltable frame="all">
+            <tgroup cols="3">
+                <colspec colname="c1" colnum="1" colwidth="1.0*"/>
+                <colspec colname="c2" colnum="2" colwidth="1.0*"/>
+                <colspec colname="c3" colnum="3" colwidth="1.0*"/>
+                <tbody>
+                    <row>
+                        <entry>army_level <co xml:id="army_level" linkends="army_level_co"/></entry>
+                        <entry>condition  <co xml:id="condition" linkends="condition_co"/></entry>
+                        <entry>comments <co xml:id="comments" linkends="comments_co"/></entry>
+                    </row>
+                </tbody>
+            </tgroup>
+        </informaltable>
+      <calloutlist>
+          <callout id="army_level_co" arearefs="army_level"><para> 军队等级</para></callout>
+          <callout id="condition_co" arearefs="condition"><para> 刷新条件</para><warning><para>条件引号全是英文半角，逗号也是英文半角 多个条件使用英文半角逗号隔开</para></warning></callout>
+          <callout id="comments_co" arearefs="comments"><para> 备注</para></callout>
+      </calloutlist>
+        <example>
+            <title>例如</title>
+            <informaltable frame="all">
+                <tgroup cols="3">
+                    <colspec colname="c1" colnum="1" colwidth="1.01*"/>
+                    <colspec colname="c2" colnum="2" colwidth="1.02*"/>
+                    <colspec colname="c3" colnum="3" colwidth="1.0*"/>
+                    <thead>
+                        <row>
+                            <entry>army_level </entry>
+                            <entry>condition</entry>
+                            <entry>comments</entry>
+                        </row>
+                    </thead>
+                    <tbody>
+                        <row>
+                            <entry>0</entry>
+                            <entry>{"cost":{"id":1,"num":200}}<co xml:id="cost1"  linkends="cost1_co"/></entry>
+                            <entry>0阶刷新消耗游戏币200</entry>
+                        </row>
+                        <row>
+                            <entry>1</entry>
+                            <entry>{"cost":{"id":1,"num":200}},{"cost":{"id":2,"num":200}}<co xml:id="cost2"  linkends="cost2_co"/></entry>
+                            <entry>1阶刷新消耗道具id为1的道具200个、消耗道具id为2的道具200个</entry>
+                        </row>
+                    </tbody>
+                </tgroup>
+            </informaltable>
+            <calloutlist>
+                <callout arearefs="cost1" id="cost1_co">
+                    <para>表示消耗道具id为1的道具200个</para>
+                </callout>
+                <callout arearefs="cost2" id="cost2_co">
+                    <para>表示消耗道具id为1的道具200个、消耗道具id为2的道具200个</para>
+                </callout>
+            </calloutlist>
+           
+        </example>
+
+        
+    </section>
+    
+</article>

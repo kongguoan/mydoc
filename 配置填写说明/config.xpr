@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="12.2">
+    <meta>
+        <filters directoryPatterns="" filePatterns="" positiveFilePatterns="" showHiddenFiles="false"/>
+        <options/>
+    </meta>
+    <projectTree name="config.xpr">
+        <folder name="army">
+            <file name="army-index.xml"/>
+            <file name="army-refresh.xml"/>
+            <file name="army-refresh-conditions.xml"/>
+        </folder>
+        <folder name="images"/>
+        <folder name="item">
+            <file name="item-index.xml"/>
+        </folder>
+        <file name="index.xml"/>
+    </projectTree>
+</project>

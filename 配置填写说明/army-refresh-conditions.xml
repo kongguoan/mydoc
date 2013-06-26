@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://www.oasis-open.org/docbook/xml/5.0/rng/docbookxi.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<article xmlns="http://docbook.org/ns/docbook"
+        xmlns:xi="http://www.w3.org/2001/XInclude"
+        xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    <info>
+        <title>军队刷新条件列表</title>
+       
+    </info>
+  <section>
+      <title>消耗道具</title>
+      <programlisting>{"cost" <co xml:id="cost"/>:{"num"<co xml:id="num"/>:1,"id"<co xml:id="id"/>:1,"type"<co xml:id="type"/>:1,"perMoney"<co xml:id="perMoney"/>:1}}</programlisting>
+       <calloutlist>
+           <callout arearefs="cost">
+               <para>表示为消耗 </para>
+           </callout>
+           <callout arearefs="num">
+               <para>表示为消耗数量 </para>
+           </callout>
+           <callout arearefs="id">
+               <para>表示为消耗的道具id</para>
+           </callout>
+           <callout arearefs="type">
+               <para>表示为消耗的道具类型<note><para>默认为道具，如果是装备需要填写装备类型</para></note></para>
+           </callout>
+           <callout arearefs="perMoney">
+               <para>表示一个道具可以使用多少人名币（金币）替代消耗 <note><para>非必要参数 某些特殊系统需要，如打造</para></note></para>
+           </callout>
+       </calloutlist>
+  </section>
+</article>
