@@ -90,5 +90,5 @@
        <note><para>在大多数情况下，你不应该显示结果一个activity使用这些方法。正在下文所讨论的关于activity的生命周期，Android系统管理一个activity的生命周期为你，所以你不需要结果你自己的activity。调用这些函数对用户体验有害并且只有在你决对不希望用户返回到这个activity的情况下。 </para></note>
         </section>
     </section>
-    
+    <xi:include href="andorid-6-1.xml"/>
 </section>

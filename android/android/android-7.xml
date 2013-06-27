@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://www.oasis-open.org/docbook/xml/5.0/rng/docbookxi.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<section xmlns="http://docbook.org/ns/docbook"
+        xmlns:xi="http://www.w3.org/2001/XInclude"
+        xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    <title>Services</title>
+    <para> &#x0020;&#x0020;
+        一个Service是一个应用程序组件，它能完成长时间运行的操作在后台，并且不提供用户接口。另一个应用程序组件能开启一个service并且它将继续运行在后台即使用户转换到另一个应用程序。额外的，一个组件可以被绑定到一个service来和它交互甚至完成进程间通信。例如，一个service可能操作网络带伤、播放音乐、执行I/O或和一个content
+        provider交互，所有这些都是在后台进行。 </para>
+    <para> &#x0020;&#x0020; 一个service主要有两个用途： </para>
+    <para> 1、Started </para>
+    <para> &#x0020;&#x0020;
+        一个service被开启当一个应用程序组件（例如activity）用startService()开启它。一旦开启，一个service能无期限的运行在后台，即使创建它的组件被销毁。通常，一个启动的service完成一个单的操作，并且不返回结果给调用者。例如，它可能下载蔌上传一个文件通过网络。当操作完成，服务应该停止它自己。 </para>
+    <para> 2、Bound </para>
+    <para> &#x0020;&#x0020; 一个service处于Bound状态，当一个应用程序组件绑定它通过bindService()。一个bound
+        service提供一个客户端/服务器接口，以允许组件和service交互、发送请求、获取结果甚至做跨进程的进程间通信（IPC）。一个bound
+        service运行只有当另一个应用程序组件绑定它。更多的是，组件能一旦绑定到service，但当它们所有都取消绑定，这个service就被摧毁。</para>
+    <para>
+        虽然这篇文档主要单独地讨论两种不同类型的service，你的service可以两个都工作－－它可以启动（无期限的运行）并且同样允许绑定。这只是你的组件是否实现了两个onStartComamnd（）回调的问题，来允许组件启动它并且onBind()允许绑定。 </para>
+    <para>
+        &#x0020;&#x0020;不管你的应用程序是否启动、bound、或两个都是，任何一个应用程序组件都可以使用service(甚至从一个单独的应用程序)，通过这种方式，任何组件能使用一个activity－－通过一个Intent开启。可是，你能声明service私有，在manifest文件里，并且阻止访问从其它应用程序。 </para>
+    <para> &#x0020;&#x0020; <emphasis role="bold"> 警告</emphasis>
+        ：一个service支它的主进程的主线程－－service不创建它自己的线程并且不运行在单独的进程（除非你指定）。这意味着，如果你的service将要去做任何耗CPU的工作或阻塞操作（例如MP3播放或网络），你应该新建一个线程为这个service来完成那个工作。通过使用一个单独的线程，你将减少应用程序不响应（ANR）风险并且应用程序的主线程能专注于你的activity的用户交互。 </para>
+    <section>
+        <title>The Basics</title>
+        <para>
+            &#x0020;&#x0020;为了创建一个service，你必须创建一个service的子类（或已经存在类的子类）。在你的实现中，你需要需要覆盖一些回调函数，那些操作service生命周期关键方面并且给组件提供一个机制来绑定到serivce，如果合适。最重要的回调你应该覆盖的是： </para>
+        <para>onStartCommand()</para>
+        <para>
+            &#x0020;&#x0020;系统调这个方法当另一个组件，例如一个activity，请求启动这个service通过startService()。一旦这个方法执行，这个service将启动并且无期限的运行在后台。如果你实现这个，那么停止service就是你的责任了当它的工作完成，通过调用stopSelf()或stopService()。（如果你只希望提供绑定，你不需要实现这个方法） </para>
+        <para>onBind()</para>
+        <para>
+            &#x0020;&#x0020;系统调用这个方法当另一个组件希望绑定service(例如RPC)，通过bindService()。在你这个方法的实现中，你必须提供一个客户使用的来和这个service通信的接口，通过一个IBinder。你必须一直实现
+            这个函数，但如果你不希望允许绑定，那么你返回null。 </para>
+        <para>onCreate()</para>
+        <para>
+            &#x0020;
+            &#x0020;系统调用这个方法当service第一次被创建，实现一次安装的步骤（在它调onStartCommand()和onBind()之前）。如果service已经在运行，那么这个方法不会调用。</para>
+        <para>onDestroy()</para>
+        <para> &#x0020; &#x0020;系统调用这个方法service不再使用将被摧毁。你的service应该实现这个来清理所有资源例如线程、注册的监听者、接收器等。这是service接收到的最后一个调用。</para>
+        <para>&#x0020; &#x0020;如果一个组件启动一个service通过startService()（导致调用onStartCommand()），然后这个service维持运行直到它停止它自己通过stopSelf()或另一个组件停止它通过stopService()。</para>
+        <para>&#x0020;&#x0020;如果一个组件调用bindService()来创建service（onStartCommand()不被调用），那么这个service当组件绑定它的时候运行。一量service被取消绑定从客户，系统销毁它。</para>
+        <para>&#x0020;&#x0020;Android系统将强制停止一个service只有当内存很低并且它必须恢复系统资源为拥有用户焦点的activity。如果service绑定到一个拥有用户焦点的activity，那么它不太可能被杀，如果service被声明为运行在前台（稍后讨论），那么 它将几乎永远不会被杀。否则，如果service启动，并且一直运行，那么 系统会降低它的位置在后台任何列表里随着时间，并且service将变得高度被杀－－如果你的service一年非常，那么你必须设计它温柔的被系统重启。如果系统杀死你的service，它重启它一量资源变得可利用（虽然这个也依赖于你从onStartCommand返回的值）。</para>
+    </section>
+    <section>
+        <title>Declaring a service in the manifest</title>
+        <para> &#x0020; &#x0020;像很多activities（以及其它组件），你必须声明所有的services在你的应用程序manifest文件里。
+        为了声明你的服务，加入&lt;service>元素作为&lt;application>元素的子元素。例如：</para>
+        <mediaobject>
+            <imageobject>
+                <imagedata fileref="images/android-12.png"/>
+            </imageobject>
+        </mediaobject>
+        <para> &#x0020;
+            &#x0020;有其它的属性你可以在&lt;service>元素中来定义属性，例如启动service的权限和service运行在哪一个进程。</para>
+        <para> &#x0020; &#x0020;就像一个activity，一个服务可以定义intent filters来允许其它组件激活服务使用隐含的intent。通过声明intent
+            filters，任何其它应用程序的组件启动你的service如果你的service声明一个intent
+            filter，匹配其它应用程序传递给startService()的intent。 </para>
+        <para> &#x0020; &#x0020; 如果你计划只本地使用你的service(其它应用程序看不见)，那么你不需要（也不应该）提供任何intent
+            filters。没有任何intent filters，你必须启动这个service使用一个intent，显式的命名service类。</para>
+        <para>
+            额外的，你可以保证你的service是私有的对你的应用程序只有你包含android:exported属性并且设置它为"false"。这点非常有效，即使你的service提供intent
+            filters。  </para>
+    </section>
+    <section>
+        <title>Creating a Started Service</title>
+        <para>一个开启的service是由另一个组件调用startService()开启，导致调用service的onStartCommand()方法</para>
+        <para/>
+    </section>
+</section>
