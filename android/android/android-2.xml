@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://www.oasis-open.org/docbook/xml/5.0/rng/docbookxi.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<section xmlns="http://docbook.org/ns/docbook"
+        xmlns:xi="http://www.w3.org/2001/XInclude"
+        xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    <info>
+        <title>应用程序原理</title>
+    </info>
+    <para>Android应用程序使用Java语言编写。Android SDK工具编译代码（包括任何数据和资源文件），将其打包成Android package，一种以.apk结果的存档文件。所有的代码只是一个.apk文件，培训班被认为是一个应用程序，并且Android授权应用程序使用它来安装应用程序。</para>
+    <para>一量在一台设置上安装，每个应用程序生存在它自己的沙箱：</para>
+    <itemizedlist >
+        <listitem><para>Android是一个多用户的Linux系统，其中每一个应用程序都是一个不同的用户。</para></listitem>
+        <listitem><para>默认系统赋予每个应用程序一个与惟一的Linux user ID（ID只被系统使用，对应用程序不可见）。系统设置给应用程序所有文件设置权限，使得只有被该应用程序的user ID才能访问他们。</para></listitem>
+        <listitem><para>每个进程有他们各自的虚拟机（VM），所以每个应用程序独立于其它应用程序运行。</para></listitem>
+        <listitem><para>默认每个应用程序在它自己的Linux进程中运行。Android开户进程当进程的任意一个组件需要被执行的时候，然后关闭进程当它不再被需要的时候或系统需要恢复内存给其它应用程序使用的时候。</para></listitem>
+    </itemizedlist>
+    <para>按照这种方式，Android实现了“priciple of least privilege”(最小权限)，也就是，每个应用程序默认只能访问他要求用来工作的组件，除此之外，什么也没有。这种机制创建一个非常安全的环境，使得一个应用程序无法访问系统中没有授权的部门。</para>
+    <para>然后，仍然有让一个应用程序和其它应用程序分享数据的方法，也有让一个应用程序访问系统服务的方法:</para>
+    <itemizedlist>
+        <listitem><para>两个应用程序可以共享同一个Linux User ID，这样他们就能相互访问对方的文件。为了保护系统资源，具体同样Linux UID的应用程序被安排同一个进程中，并且共享同一个VM（另外他们必须有同样的签名证书）。</para></listitem>
+        <listitem><para>一个应用程序可以请求访问在设备数据例如用户联系人、SMS消息、SK卡、照相机、蓝牙以及更多，但是必须在安装时得到用户的授权。</para></listitem>
+    </itemizedlist>
+</section>
