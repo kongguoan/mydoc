@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://www.oasis-open.org/docbook/xml/5.0/rng/docbookxi.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<section xmlns="http://docbook.org/ns/docbook"
+        xmlns:xi="http://www.w3.org/2001/XInclude"
+        xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    <title>应用程序资源（Application resources）</title>
+    <para></para>
+    <para>一个Android应用不仅仅由代码组件－它要求独立于代码的资源，例如图像、音频文件以及任何涉及到应用程序视觉表达的东西。例如，你可以定义动画、菜单、颜色、以及activity用户接口的布局用XML文件。使用应用程序资源使得它很容易你应用程序的多变的特性而不需要修改代码并且能过提供一系统可选的资源，使得你能优化你的应用程序为一各种不同的设备配置（例如不同语言和不同屏幕大小）。</para>
+    <para>
+        每一个引入你应用程序的资源，SDK编译工具定义一个惟一的整数ID，你可以用来引用资源从你的应用程序代码里或定义在XML中的其它资源。例如，如果你的应用程序包含一个图像文件名字为logo.png（保存在/res/drawable/directory），SDK工作生成一个资源ID名叫R.drawable.log，你可以使用来引用
+        图片和插入它到你的用户接口里。</para>
+    <para>
+        最重要一个方面是提供资源给你的源代码是给你的应用程序提供为不同设备提供不同资源的能力。例如，通过定义UI字符串在XML，你可以转换这些字符串到别的语言并且保存这些字符串在单独的文件中。然后，根据语言qualifier，你添加资源到资源目录的名字（如res/values-fr/
+        为法语字符串值）并且用户的语言选项，Android系统应用合适的语言选项为你的UI。</para>
+    <para>
+        Android支持多种不同的qulifiers为你的可选资源。qualifier是一个短字符串，以资源目录作为名字，你包含为了定义设备配置哪个资源应该被使用。另一个例子，你应该经常定义不同的布局为你的activities依赖于设备屏幕的方向和大小。例如，当设备屏幕竖立的时候（高)，你或许希望一个希望按钮垂直的按钮，但是当屏幕在浏览状态下（宽），按钮应该水平对齐。为了改变布局依赖于方向，你可以定义两种不同的布局就胳合适的qualifier给每个而已目录。然后，系统自定应用合适的布局依赖于当前的设备方向。</para>
+</section>

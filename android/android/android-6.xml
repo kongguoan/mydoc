@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://www.oasis-open.org/docbook/xml/5.0/rng/docbookxi.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<section xmlns="http://docbook.org/ns/docbook"
+        xmlns:xi="http://www.w3.org/2001/XInclude"
+        xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    <title>活动（Activity）</title>
+    <para>一个Activity是一个应用程序组件，提供一个屏幕，用户可以用来交互为了完成某项任务，例如拨号、拍照、发送email、看地图。每一个activity被给予一个窗口，在上面可以绘制用户接口。窗口通常充满屏幕，但也可以小于屏幕而浮于其它窗口之上。
+        
+        　　一个应用程序通常由多个activities组成，他们通常是松耦合关系。通常，一个应用程序中的activity被指定为"main"activity，当第一次启动应用程序的时候呈现给用户的那个activity。每一个activity然后可以启动另一个activity为了完成不同的动作。每一次一个activity启动，前一个activity就停止了，但是系统保留activity在一个栈上（“back stack”）。当一个新activity启动，它被推送到栈顶，取得用户焦点。Back Stack符合简单“后进先出”原则，所以，当用户完成当前activity然后点击back按钮，它被弹出栈（并且被摧毁），然后之前的activity恢复。
+        
+        　　当一个activity因新的activity启动而停止，它被通知这种状态转变通过activity的生命周期回调函数。有许多回调函数一个activity可能会收到，源于它自己的状态变化－无论系统创建它、停止它、恢复它、摧毁它－并且每个回调提供你完成适合这个状态的指定工作的机会。例如，当停止的时候，你的activity应该释放任何大的对象，例如网络数据库连接。当activity恢复，你可以重新获得必要的资源和恢复被中断的动作。这些状态转换都是activity的生命周期的部分。</para>
+    <section><title>创建活动(Creating an Activity)</title>
+    <para>
+            创建一个activity，你必须创建一个Activity的子类（或者一个Activity的子类的子类）。在你的子类中，你需要实现系统回调的回调方法，当activity在它的生命周期的多种状态中转换的时候，例如当activity被创建、停止、恢复或摧毁。两个最重要的回调方法是：
+            onCreate()
+            你必须实现这个方法。系统调用它当创建你的activity的时候。在你的实现中，你应该初始化你的activity的基本的组件。更重要的是，这里就是你必须调用setContentView（）来定义activity用户接口而已的地方。
+            onPause() 系统调用这个方法当用户离开你的activity（虽然不总是意味着activity被摧毁）。这通常是你应该提交任何变化，那此将会超越user
+            session而存在的（因为用户可能不再回来）。
+            有若干其它生命周期回调函数你应该使用为了提供一个流畅的用户体验，并表操作异常中断会引起你的activity被中断甚至被摧毁。</para>
+        <para>1、Implementing a user interface
+            一个activity的用户接口被一个层次化的视图提供－－继承于View类的对象。每个View控制activity窗口中的一个特定矩形区域并且能响应用户交互。例如，一个view可能是个button，初始化动作当用户触摸它的时候。
+            Android提供大量预定义的view，你可以使用来设计和组件你的布局。“Widgets”是一种给屏幕提供可视化(并且交互)元素的view，例如按钮、文件域、复选框或者仅仅是图像。“Layouts”是继承于ViewGroup的View，提供特殊的布局模型为它的子view，例如线程布局、格子布局或相关性布局。你可以子类化View和ViewGroup类（或者存在的子类）来创建自己的widget和而已并且应用它们到你的activity布局中。
+            最普通的方法是定义一个布局使用view加上XML布局文件保存在你的程序资源里。这样，你可以单独维护你的用户接口设计，而与定义activity行为的代码无关。你可以设置布局作为UI使用setContentView()，传递资源布局的资源ID。可是，你也可以创建新Views在你的activity代码，并且创建一个view层次通过插入新Views到ViewGroup，然后使用那个布局通过传递到根ViewGroup给setContentView()。 </para>
+    <section>
+        <title>在mainfest文件生命活动(Declaring the activity in the manifest)</title>
+        <para>
+        你必须声明你的activity在manifest文件为了它可以被系统访问。要声明你的activity，打开你的manifest文件，添加一个&lt;activity&gt;元素作为&lt;application&gt;元素的子元素。例如： </para>
+        <mediaobject>
+            <imageobject>
+                    <imagedata fileref="images/android-3.png"/>
+                </imageobject>
+        </mediaobject>
+    </section>
+        <section>
+            <title>使用意图过滤器（Using intent filters）</title>
+            <para>一个&lt;activity&gt;元素也能指定多种intent
+                filters－－使用&lt;inetent-filter&gt;元素－－为了声明其它应用程序可以激活它。</para>
+            <para> 当你创建一个新应用程序使用Android SDK工具，存根activity自动为你创建，包含一个intent
+            filter，声明了activity响应"main"动作，并且应该被 放置 在"launcher"分类。Intent filter看起来像这个样子。</para>
+            <mediaobject>
+                <imageobject>
+                    <imagedata fileref="images/android-4.png"/>
+                </imageobject>
+            </mediaobject>
+            <para>&lt;action&gt;元素指定这是一个"main"入口点对这个应用程序。&lt;category&gt;元素指定，这个activity应该被列入系统应用程序列表中（为了允许用户启动这个activity）。</para>
+            <para> 如果你希望应用程序自包含，并且不希望别的应用程序激活它的activities，那么你不需要任何其它intent
+                filters。只有一个activity应该有“main"动作和”launcher“分类，就像前面这个例子。你不希望被其它应用程序访问原Activities应该没有intent
+                filters而且你能启动他们通过自己显示的intent。</para>
+            <para> 可是，如果你希望你的activity响应影含的intents，从其它应用程序（和你自己的），那么你必须定义额外的intent
+                filters为这个activity。每一种你希望响应的类型的intent，你必须包含&lt;intent-filter&gt;，包含&lt;action&gt;元素，可选的，一个&lt;category&gt;元素并且/或一个&lt;data&gt;元素。这些元素指定你的activity能响应的intent的类型。</para>
+        </section>
+        <section>
+            <title>启动活动(Starting an Activity)</title>
+            <para>你可以开启另一个activity通过startActivity()，传递一个Intent描述了你希望启动的Activity。Intent指定要么准备的activity你希望启动或描述你希望完成的动作（操作系统选择合适的activity为你，可能来自定不同的应用程序）。一个intent可以传输小量数据被启动的activity使用。</para>
+            <para>
+                完全工作在你的应用程序之内，你将经常需要简单的启动一个未知的activity。你可以这么通过创建一个intent显示的定义你希望启动的activity，使用类名。例如，下面显示一个activity怎么启动另一个activity命名为SignInActivity：</para>
+            <mediaobject>
+                <imageobject>
+                    <imagedata fileref="images/android-5.png"/>
+                </imageobject>
+            </mediaobject>
+            <para>
+                可是，你的应用程序或许希望执行一些动作，例如发送一份邮件、文件消息或者状态更新，使用你的activity的数据。在这种情况下，你的应用程序或许没有它自己的activity来完成这个动作，因此你可以促使设备上其它应用程序提供的activity来完成你的动作。这才是intent真正有价值的地方－－你可以创建一个intent描述一个你希望执行的动作，然后系统启动一个合适的activity从其它应用程序。如果有多种activities可以处理这个intent，那么
+                用户可以选择哪一个来执行。例如，如果你希望允许用户发送邮件，你可以创建下面的Intent: </para>
+            <mediaobject>
+                <imageobject>
+                    <imagedata fileref="images/android-6.png"/>
+                </imageobject>
+            </mediaobject>
+            <para>
+                EXTRA_EMAIL额外的添加给intent一个字符串数组指定email地址，当一个邮件应用程序响应这个intent的时候，它读取这些字符串数组并且放置他们到相应字段。在这种情况下，email应用程序的activity启动并且当用户执行完，你的activity恢复。 </para>
+        </section>
+        <section><title>Starting an activity for a result</title>
+            <para>有时，你或许希望接收一个结果从你启动的activity。在这种情况下，开启这个activity通过startActivityForResult()(而不是startActivity())。然后从随后的activity接收结果，实现onActiviryResult()回调函数。当随后的activity完成，它返回一个结果给你的onActivityResult()函数通过一个intent。</para>
+            <para> 例如，或许你希望用户选择他们中的一个联系人，所以你的activity可以对这个联系人做些事情。下面是你怎么建立这样一个Intent和操作结果：</para>
+            <mediaobject>
+                <imageobject>
+                    <imagedata fileref="images/android-7.png"/>
+                </imageobject>
+            </mediaobject>
+            <para></para>
+            <para>
+                这个例子展现了基本的逻辑你应该使用的在你的onActivityResult()函数中，为了操作一个activity的结果。第一个条件检测是否请求成功－－如果是，那么
+                resultCode将会是RESULT_OK－－并且是否这个请求是否是这个响应是响知道－－在这种情况下，requestCode匹配第二个参数用startActivityForResult()的参数。在那里，代码操作activity结果通过查询返回在intent中的数据（data参数）。</para>
+            <para> 将发生的是，一个ContentResolver实现查询content provider，返回一个Cursor允许读查询的数据。</para>
+        </section>
+        <section>
+            <title>Shut Down an Activity</title>
+            <para> 你可以关闭一个activity通过调用自身的finish()方法。你也可以关闭一个独立的activity你之前启动的通过finiActivity()。 </para>
+       <note><para>在大多数情况下，你不应该显示结果一个activity使用这些方法。正在下文所讨论的关于activity的生命周期，Android系统管理一个activity的生命周期为你，所以你不需要结果你自己的activity。调用这些函数对用户体验有害并且只有在你决对不希望用户返回到这个activity的情况下。 </para></note>
+        </section>
+    </section>
+    
+</section>

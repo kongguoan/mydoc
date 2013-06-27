@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://www.oasis-open.org/docbook/xml/5.0/rng/docbookxi.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<section xmlns="http://docbook.org/ns/docbook"
+        xmlns:xi="http://www.w3.org/2001/XInclude"
+        xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    <title>Manifest 文件</title>
+    <para></para>
+    <para>在Android系统能够启动一个应用程序组件之前，系统必须通过阅读应用程序AndroidManifest.xml文件来知道组件的存在。你的应用程序必须声明它所有的组件在这个文件中，必须放在应用程序项目根目录。</para>
+    <para> Manifest文件做一系列事情包括声明应用程序组件，例如：</para>
+    <para> 1、认证任何应用程序请求的用户权限，例如网络访问或者读用户联系人的权限。</para>
+    <para> 2、声明应用程序所需要的最小的API级别。</para>
+    <para> 3、声明该应用程序使用的硬件或软件的特点，例如摄像头、蓝牙或多等触摸。</para>
+    <para> 4、需要链接的API库，例如Google Maps Library。</para>
+    <para> 5、其它</para>
+    <section>
+        <title>声明组件（Declareing components）</title>
+        <para></para>
+        <para>Manifest的主要的任务是通知系统关于应用程序的组件信息。例如，一个manifest文件可以声明一个activity像下面这样：</para>
+        <mediaobject>
+            <imageobject>
+                <imagedata fileref="images/android-2.png"/>
+            </imageobject>
+        </mediaobject>
+        <para></para>
+        <para>在&lt;application&gt;元素中，android:icon属性指定一个用来标识应用程序的图标。</para>
+        <para>
+            在&lt;activity&gt;元素中，android:name属性指明了Activity子类的全称，android:label属性指定一个字符串作为用户可见的activity标签。</para>
+        <para> 你必须像下面一样声明所有的应用程序组件：</para>
+        <para> 1、&lt;activity&gt;元素声明activities</para>
+        <para> 2、&lt;service&gt;元素声明services</para>
+        <para> 3、&lt;receiver&gt;元素声明broadcast receivers</para>
+        <para> 4、&lt;provider&gt;元素声明content provider</para>
+        <para> 你代码中无声明的Activities、services、和content providers对系统是不可见的，并且相反地，永远都无法运行。可是，broadcast
+            receivers可以被声明在manifest中或者用代码动态（就像BroadcastReceiver对象）并且注册进系统通过registerReceiver()。</para>
+    </section>
+    <section>
+        <title>声明组件能力（Declaring component capabilities）</title>
+        <para>就像上面讨论的，在activiting组件，你可以使用Intent来启动activities、service、和broadcast
+            receiver。你可以通过显示地命名目标组件（使用组件类名）在intent中。然而，intent的真下能力在于intent actions的概念。在intent
+            actions，你简单的描述你想要执行的动作类型（或者是你希望实现操作的数据）并且允许系统找一个设备上的组件来实现action并且启动它。如果有多个组件能完成那个intent描述的动作，那么由用户选择哪一个来用。（PS：像windows注册表和扩展名的概念）</para>
+        <para> 系统辨别哪个组件能响应一个intent通过比较intent filters，被设备上的其它应用程序的manifest文件提供。</para>
+        <para> 当你在应用程序manifest中声明一个组件时，你可选的可以包含intent
+            filters，用来声明你组件的能力，以致它可以响应来自其它应用程序的intent。你可声明一个intent
+            filter给你的组件通过添加&lt;intent-filter&gt;元素作为组件声明元素的子元素。</para>
+        <para> 例如，一个邮件应用程序有一个activity用来组建一个新邮件，或者会声明一个intent
+            filter在它的manifest入口点来响应"发送"intents（为了发送邮件）。那一个Activity在你应用程序里可以创建一个intent带上“发送”动作(ACTION_SEND)，系统匹配邮件应用程序的“发送”activity，然后用startActivity（）启动它。</para>
+    </section>
+    <section>
+        <title>声明应用需求（Declaring application requirements）</title>
+        <para></para>
+        <para>有各种各样的设备被Android管理，并不是他们中的所有都提供相同的特点和能力。为了防止你的应用程序安装在缺少设备环境的机器上，所以清晰的定义一个你的应用需要的设备和软件要求在你的manifest中显得非常重要。它们中大多数只是传达信息，系统不会阅读它们，但是外部services例如Android
+            Market会阅读他们目的是给用记提供过滤当他们搜索应用程序在他们的机器上时。 </para>
+        <para> 例如，如果你的应用程序要求一个摄像头然后使用2.1的API（Level 7），你应该声明 这些作为要求在你的manifest文件里。这样的话，没有摄像头的和Android
+            version小于2.1的机器就不能安装Android Market。</para>
+        <para>
+            可是，你也可以声明你的应用程序使用摄像头，但并不一定要求。在这种情况下，你的应用程序在运行时会检查以决定是不否这个设备有一个摄像头并且关闭所有使用使用摄像头的功能在没有摄像头的情况下。</para>
+        <para> 下面是一些重要的设备特性你应该考虑的在你设计和开发你的应用程序的时候。</para>
+        <para> 1、Screen size and density </para>
+        <para>
+            为了分类设备的屏幕类型，Android为每种设备定义了两种属性：屏幕大小（屏幕物理尺寸）和屏幕分辨率（屏幕物理像素密度或每英寸DPI-DOT）。为了简化各种类型屏幕的配置，Android系统把他们生来可选择的组让他们更容易被定位。</para>
+        <para> 屏幕大小是:small, normal, large 和extra larege.</para>
+        <para> 屏幕分辨率是：low density, medium density, hidensity 和extra hight density</para>
+        <para>
+            默认，你的应用程序兼容所有的屏幕大小和分辨率，因为android系统生成全适的调整对你的UI布局和图像资源。可是，你应该建立独特的布局为某一种特定的屏幕大小并且提供特定的图片为特定的密度，使用可选的布局和资源，并且声明在你的manifest文件中哪个屏幕大小你的应用程序支持通过&lt;support-screens&gt;元素。</para>
+        <para> 2、Input configurations </para>
+        <para>
+            很多设备提供不同类型的输入机制，例如硬件键盘，跟踪球，或者是five-way浏览器。如果你的应用程序要求一个特别各类的输入硬件，那么你应该声明它在你的manifest文件中通过&lt;uses-configuration&gt;元素。可是，极少数情况下一个应用程序应该声明某种输入配置。</para>
+        <para> 3、Device features </para>
+        <para>
+            会有很多的硬件和软件特性可能存在或不存在在一个给定的android设备上，例如摄像头、光感器、蓝牙、某种版本的OpenGL、或者是触摸屏的精确性。你应该永远不假设某种特性在Android设备上具有（不是说标准Android库），所以你应该声明任何特点你应用程序会使用到的通过&lt;uses-feature&gt;元素。</para>
+        <para> 4、Platform Version </para>
+        <para> 不同的Android设备通常运行不同版本的Android平台，例如Android1.6或Android
+            2..每个连续的版本通常包含不存在于版本的额外的APIs。为了指定哪个API集合是可用的，每个平台版本指定一个API Level（例如，Android 1.0 是API
+            Level 1并且Android 2.3是 API Level 9）。如果你使用任何1.0版本以后的API，你应该声明最小的API
+            Level使用&lt;uses-sdk&gt;元素。</para>
+        <para> 你声明所有的要求为你的应用程序非常重要，因为，当你发布你的应用程序在Android
+            Market时，Market使用这些声明来过滤哪些程序在各个设备上是可用的。这校报话，你的应用程序将出现在符合你所有要求的设备上。</para>
+    </section>
+</section>

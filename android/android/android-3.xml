@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://www.oasis-open.org/docbook/xml/5.0/rng/docbookxi.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<section xmlns="http://docbook.org/ns/docbook" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    <info>
+        <title>应用程序组件</title>
+    </info>
+    <section>
+        <title>Activities</title>
+        <para>一个activity代表一个拥有一个用户接口的屏幕。例如，电子邮件应用程序可能有一个activity展现邮件列表，另一个activity构建email，还有一个用来阅读activity。虽然在邮件应用程序中activities一起工作来展现一个连续的用户体验，但每一个都是相对于其它的都独立。这样，不同的应用程序可以以任何一个activity开始（如果邮件应用程序允许）。例如，一个照相应用程序可以以邮件应用程序中的构建新邮件的activity来启动，目的是让用户分享邮件。</para>
+        <para> 一个activity是一个实际了Activity的子类。</para>
+    </section>
+    <section>
+        <title>Service</title>
+        <para>一个Service是一个运行在后台以运行长时间操作或者是实现远程操作的行为的组件。一个Service没有提供用户服务。例如，当一个用户在另运行另一个应用程序时音乐播放Service可以在后台运行，或者是从网络获取数据而不打断当前activity与用户的交互。另一个组件，例如activity，可以开始一个Service然后证它工作或者绑定它而与它交互。</para>
+        <para> 一个Service是一个实现了Service的子类。</para>
+    </section>
+    <section>
+        <title>Content providers</title>
+
+        <para>一个Content
+            provider管理器管理应用程序分享的数据集。你可以存储这些数据在文件系统、一个SQLite数据库、在Web蔌者是任何其它的你的应用程序可以访问的永久性存储设备。通过content
+            provider，其它应用程序可以查询甚至修改数据（如果content provider允许）。例如，Android系统提供一个content
+            provider来管理用户的联系人信息。这样的话，任何一个拥有合适权限应用程序可以查询content provider的一部来然后来读和写关于某个人的信息。</para>
+        <para> Content providers同样在读和写一个应用程序私有数据时很有用。例如，</para>
+        <para> 一个content provider是一个实现了ContentProvider类的子类，并且必须实现一个标准API集以允许其它应用程序行使事务。</para>
+    </section>
+    <section>
+        <title>Broadcast receivers</title>
+        <para>一个Broadcast
+            receiver是一个响应系统级广播通知的组件。很多的广播源于系统－－例如，一个通知屏幕已经关闭的广播、电量很低的广播、图片锁定的广播。应用程序同样可以初始化广播－例如，让其它应用程序知道一些数据已经被下载到设备上并且可以被他们使用。虽然broadcast
+            receivers没有用户接口，他们可以建立一个状态条的通知通知用户一个广播事件发生。更普通的是，一个broadcast
+            receiver对其它组件来说是一个网关（gateway），只做很少一部分工作。例如，它初始化一个苦于某个事件的服务去完成一项工作。</para>
+        <para> 一个broadcast receiver实现BroadcastReceiver，并且每个broadcast被Intent对象传递。</para>
+    </section>
+    <section>
+        <title>OTHER</title>
+        <para>
+            Android系统调序的一个特别之处是任何一个应用程序可以开启另一个应用程序的组件。例如，如果你想要用户使用摄像头拍一张相片，可以另一个程序有这个功能，然后你的应用程序是使用它，而不是开发一个activity用拍摄一张相片。你不需要组合和连接摄像应用程序的代码。反而，你可以简单的启动摄像应用程序的拍照activity。当完成的时候，相片被返回到你的应用程序然后你可以使用它。对用户来讲，他感觉报像是你应用程序的一部分。</para>
+        <para>
+            当系统启动一个组件，它为该应用程序新建一个进程（如果该进程不在运行的话），并表示例这个组件需要的类。例如，如果你的应用程序开启一个摄像机应用程序的activity来拍照，那个activity运行在摄像机应用程序的进程中，不是在你的应用程序进程中。因此，和其它操作系统的应用程序不一样，Android应用程序没有一个简单的入口点（entry
+            point）（也就是没有main()函数）。</para>
+        <para>
+            因为系统运行第一个应用程序在一个单独的进行中，并且赋予不同的权限以限制访问其它应用程序，你的应用程序不能直接激活其它应用程序的组件。可是，Android系统可以。所以，要激活其它进程中的组件，你必须发送一个消息给系统，指明你的意图（intent）为启动某一个组件。系统可以为你激活组件。</para>
+    </section>
+    <section>
+        <title/>
+        <para>4种组件类中的3种－activities、services、broadcast－被一个称为<emphasis role="bold"
+            >intent</emphasis>的异步消息激活。Intents让单独的组件在运行时绑定在一起（你可以把他们看作从其它组件请求行为的消息），不管那个组件属不属于你的应用程序。</para>
+        <para> intent被Intent对象创建，用来定义一个消息以启动一个指定组件或者是指定类型的组件－一个Intent可以是显示的或隐式的。</para>
+        <para>
+            对activities和services来讲，一个intent定义了执行的行为（例如，查看或发送某个事情），可以指定要操作的URI（组件启动需要知道的事情）。例如，一个intent可以发送一个请求给activity来展现一个图片蔌者打开一个web页面。在某些情况下，你可以启动一个activity来接收结果，在这种情况下，请求的activity也返回结果在一个intent中（例如，你可发出一个intent来让用户选择一个用户联系人，然后返回给你－这个返回的intent包含一个指定选择联系人的URI）。</para>
+        <para> 对broadcast receivers，intent仅简单的定义被广播的声明（例如，一个设备电量低的广播只包括一个已经的行为字符串代表“battery is
+            low”）。</para>
+        <para> 其它的组件类型，content
+            provider，不是被intent激活。相反，它在被一个来自ContentResolver的请求盯上的时被激活。ContentResolver操作所有和content
+            provider直接的事务，而实现事务的组件不需要和ContenResolver通信。这使得在content
+            provider和component请求者之间留了一个虚拟的层（出于全安）。</para>
+        <para> 有单独的方法来激活各种类型的组件：</para>
+        <para> 1、你可以开始一个activity通过传递一个Intent给startActivity()或startActivityForResult()（当前需要activity
+            返回返回一个结果）。</para>
+        <para>
+            2、你可以开户一个service（或者给当前运行service新指示）通过传递一个Intent给startService()，或者你可以绑定到service通过传递一个Intent给bindService()。</para>
+        <para>
+            3、你可以初始化一个broadcast通过传递一个Intent给方法例如sendBroadcast()、sendOrderedBroadcast（）或者sendStickyBroadcast()。</para>
+        <para> 4、你可以实现查询一个content provider通过调用ContentreSolver的query()函数。</para>
+    </section>
+</section>

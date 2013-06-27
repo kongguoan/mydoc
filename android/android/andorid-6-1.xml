@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://www.oasis-open.org/docbook/xml/5.0/rng/docbookxi.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<section xmlns="http://docbook.org/ns/docbook"
+        xmlns:xi="http://www.w3.org/2001/XInclude"
+        xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    <title>Managing the Activity Lifecycle</title>
+    <para></para>
+    <para>管理你的activity的生命周期通过实现回调函数非常关键对开发一个健壮和有弹性的应用程序。一个activity的生命周期直接被与其相关联的其它activity影响，task和bask
+        stack。</para>
+    <para> 一个activity可以存在于主要的三种状态：</para>
+    <para> 1、Resumed</para>
+    <para> activity在前景并且拥有用户焦点。（这个状态有时也叫”running“）</para>
+    <para> 2、Paused</para>
+    <para> 另一个activity在前景并且拥有用户焦点，但这个仍然可见。也就是说，另一个activity可见在这个的上面，当前activity部分透明或没有覆盖整个屏幕。一个paused
+        activity完全活着（the Activity对象维在内存中，它维护所有的状态并且记忆信息，仍然连接着窗口管理器），但是可以被系统杀死在极端需要内存的情形下。</para>
+    <para> 3、Stopped</para>
+    <para> 一个activity被另一个activity完全阻挡（activity现在在后台）。一个stopped activity仍然活着（Activity
+        object维持在内存中，它维扩所有的状态和成员信息，但没有绑定窗口管理器）。可是，它不再被用户可见并且它可被系统销毁在需要的地方。 </para><note><para> 如果一个activity
+            paused或者stopped，系统可以从内存中抛弃它通过要求它结束（调用它的finish()方法），或者简单的杀掉它的进程。当activity再次被打开（在被finished或杀死后），它重新建立所有的东西。 </para> </note>
+    <section><title>Implementing the lifecycle callbacks</title>
+    <para>
+            当一个activity转换到或转换出上面提到的状态，它被通过各种不同的回调函数通知。所有这些回调函数都是hook，你可以覆盖来做合适的工作当你的activity状态变化。下面的activity骨架包含每一个基本的生命周期函数： </para>
+        <mediaobject>
+            <imageobject>
+                <imagedata fileref="images/android-8.png"/>
+            </imageobject>
+        </mediaobject>
+        <note><para>这些生命周期函数的实现必须调用父类的实现在你做自己的工作之前，就像上面显示的一样。</para></note>
+        <para> 放在一起，这些函数定义了整个生命周期关于一个activity。通过实现这些方法，你可以监视三种嵌套的循环在activity生命周期中。 </para>
+        <para>
+            1、一个activity的整个生命时间发生在onCreate()和onDestroy()函数。你的activity应该设置全局状态（例如定义布局）在onCreate（），并且释放所有的资源在onDestroy（）。例如，如果你的activity有一个线程在后台跑下载数据从网络，它可能创建那个线程在onCreate()然后停止线程在onDestroy()。 </para>
+        <para>
+            2、一个可视的生命期发生在onStart()和onStop()之间。在这期间，用户可以看见activity在屏幕上并且和它交互。例如，onStop()被调时当一个新的activity开始并且这个不再被可见。在这两个函数间，你可以维持资源那些需要用来展现activity给用户的。例如，你可以注册一个BroadcastReceiver在onStart()，然后注销在onStop()当用户不再看见你显示的东西。系统可能会调onStart(0和onStop()多次在这整个生命线期间，当activity在是否可见间转换的时候。 </para>
+        <para>
+            3、一个activity的前景生命期发生在onResume()和onPause()之间。在这期间，此activity在所有其它activity之上在屏幕上，并且拥有用户焦点。一个activity可以经常转换进和转换出前景－－例如，onPause被调用当设备准备休眠蔌当一个对话框产生。因为这种状态可以经常转换，代码在这两个状态应该轻量为了避免减慢转换速度使得用户等待。 </para>
+        <para> 陈述这些循环并且展现一个activity可以发生的状态转换路径。矩形代表你能实现的回调函数。 </para>
+        <mediaobject>
+            <imageobject>
+                <imagedata fileref="images/android-9.png"/>
+            </imageobject>
+        </mediaobject>
+        <para>同样的生命周期回调函数被列在table 1，更加详细的描述了回调函数放置每一个在activity的事个生命周期，包含是否系统能杀死activity在回调函数完成后。</para>
+        <para>
+            <emphasis role="bold">Table 1.</emphasis>  A summary of the activity lifecycle's
+            callback methods. </para>
+        <mediaobject>
+            <imageobject>
+                <imagedata fileref="images/android-10.png"/>
+            </imageobject>
+        </mediaobject>
+        <para>
+            因为onPause（）他们三个中的第一个，一量activity被建立，onPause()是最后一个被保证调用的方法－－如果系统必须恢复内存在紧急状态，然后onStop()和onDestroy()可能将不被调用。因此，你应该使用onPause()来写数据（例如edit）的存储。可是，你应该精心挑选哪个信息一定要在onPause()中留住，因为任何何阻塞的操作在这个函数阻塞到下一个activity的转换因而降低用户体验。 </para>
+    </section>
+    <section>
+        <title>Saving activity state</title>
+        <para>
+            本文简单的提到了什么一个activity被paused和stopped，activity的状态维持着。这是真的因为activity对象仍然在内存当它被paused或stopped－－所有的信息关于它的成员变量和当前状态都存在。如此，任何用户的变化在activity中都维持在内存里，所以当activity返回到前景的时候（resumes），这些变化仍然存在。 </para>
+        <para>
+            可是，当系统摧毁一个activity为了恢复内存，activity对象被摧毁了，所以系统不能简单的以完整状态resume它。代替的是，系统必须创建Activity对象如果用户浏览回它。也就是，用户不知道系统摧毁了activity并且再创建了它，如此，可以希望activity是它刚才的那个。在这种情况下，你可以确定重要的信息关于activity的状态被保留通过实现一个额外的回调函数，允许你保存信息关于你的activity，然后恢复它当系统重新创建它的时候。 </para>
+        <para>
+            这个你可以保存当前状态信息的回调函数是onSaveInstanceState()。系统调这个函数在摧毁activity这前，并且传递一个Bundle对象。Bundle就是你可存在状态信息的地方，采用name-value对，使用方法如putString()。然后，如果系统杀死你的activity进程并且用户浏览回到你的activity，系统传递Bundle给onCreate，这样你就可以恢复activity状态你在onSaveInnstanceState（）时候保存的状态。如果没有信息被保存，传递给onCreate（）的Bundle是null。 </para>
+        <para>
+            <emphasis role="bold">注意</emphasis>
+            ：不保证onSaveInstanceState()将会被调用在你的activity被摧毁前，因为有不需要存储的情况存在（例如当用户离开你的activity，用户显示的结束）。如果这个方法被调用，它总是在onStop（）前，概率性在onPause()前。 </para>
+        <para>     可是，即使你不做什么事也不实现
+            onSaveInstanceState()，一些activity的状态被activity类的默认onSaveInstanceState实现恢复。特别的，默认的View的onSaveInstance（）在布局方面，允许每一个视图提供它自己的信息来被保存。几乎所有
+            的Android框架中的widget实现这个方法合适的，这样任何可见的变化对UI都自己保存并且恢复当你的activity被创建的时候。例如，EditText
+            widget保存任何文本被用户输入的，并且CheckBox
+            widget保存是否选中还是没选中。惟一的工作要求你的是提供一个惟一的ID（通过android:id属性）给每一个希望保存状态的widget。如果一个widget没有ID，那么
+            它不保存它的状态。 </para>
+        <para>    虽然onSaveInstanceState()的默认实现保存非常有用的信息关于你的activity
+            UI你仍然会需要覆盖它来保存额外的信息。例如，你或许需要保存成员变量在activity生命期间变化的（和保存在UI中的数据有关，但保存这些UI值的变量却不会被默认保存）。</para>
+        <para>    因为默认的onSaveInstanceState()帮你
+            你保存UI状态，如果你覆盖这些方法为了保存额外的信息，你应该每次调用父类的实现关于onSaveinstanState()在做工作之前。  </para>
+        <para>
+            <emphasis role="bold">注意</emphasis>
+            ：因为onSaveInstanceState（）不保证被调用，你应该用它仅用它记录临时状态关于你的activity－－你应该永远不用它来存储永久性数据。代替的是，你应该用onPause()来存储永远性数据（例如保存在数据库中的数据）当用户离开activity。 </para>
+        <para>
+            一个好的方法测试你程序保存状态的功能是简单的转换设备以使屏幕方向改变。当屏幕方向变化，系统摧毁和重建activity为了应用可选的资源，适合新方向的。出于这个原因，你的activity恢复它的状态当创建的时候非常重要，因为用户通常转换屏幕在使用应用程序的时候。 </para>
+        <para/>
+        <mediaobject>
+            <imageobject>
+                <imagedata fileref="images/android-11.png"/>
+            </imageobject>
+        </mediaobject>
+    </section>
+    <section>
+        <title>Handling configuratinon changes</title>
+        <para>
+            一些设备配置能在运行时改变（例如屏幕方向，键盘是否可用和语言）。当这样的变化发生时，Android重新开启运行中的Activity（onDestroy（）被调用，然后onCreate()被调用）。重启行为被设计来帮助应用程序适应新的配置通过自动加载你的应用程序通过可选的资源，你提供的。如果你设置你的activity合适的操作这个事件，它将更有弹性对生命周期中无法预料的事件 </para>
+        <para>
+            最好的方法操作配置变化，例如屏幕方向变，就是简单的预定义你应用程序的状态使用onSaveInstanceState()和onRestoreInstanceState()（或onCreate()），就像前面讨论的。 </para>
+    </section>
+    <section>
+        <title>Coordinating activities</title>
+        <para>
+            当一个activity启动另一个，他们都在体验生命周期转换。第一个activitypauses和stop(虽然，它不会stop如果他仍然可见在前景)，另一个activity被创建。万一这些activities共离数据保存到磁盘或哪，那就让第一个activity不退出在另一个启动前就显得非常重要。相当的情况是，后一个进程启动覆盖了前一个停止的时候。 </para>
+        <para>         生周周期回调被良好的定义了，特别的当两个activities都在同一个进程，并且其中一个启动另一个。下面是操作顺序当activity
+        A启动activity B： </para>
+        <itemizedlist>
+            <listitem><para>Activity A 的onPause()的方法执行。</para></listitem>
+            <listitem><para>Activity B 的onCreate()、onStart()和onResume()方法执行，顺序的。（B现在拥有用户焦点）</para></listitem>
+            <listitem><para>如果A不再可见，它的onStop()方法执行。</para></listitem>
+        </itemizedlist>
+        <para>         这种生命期函数调用序列允许你从一个activity到另一个的信息转换。例如，如果你必须写入一个数据库，当第一个activity
+            stop，以便让下一个activity能读它，那么你应该写入数据库在onPause()而不是onStop()。</para>
+    </section>
+</section>
