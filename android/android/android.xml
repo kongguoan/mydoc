@@ -12,4 +12,10 @@
             </address>
         </author>
     </info>
+    <xi:include href="android-1.xml" />
+    <xi:include href="android-2.xml" />
+    <xi:include href="android-3.xml" />
+    <xi:include href="android-4.xml" />
+    <xi:include href="android-5.xml" />
+    <xi:include href="android-6.xml" />
 </book>

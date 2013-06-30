@@ -1,12 +1,17 @@
 <map version="0.9.0">
 <!-- To view this file, download free mind mapping software FreeMind from http://freemind.sourceforge.net -->
-<node COLOR="#000000" CREATED="1372302941362" ID="ID_1968208090" MODIFIED="1372305756289" TEXT="">
+<node COLOR="#000000" CREATED="1372302941362" ID="ID_1968208090" MODIFIED="1372325496991" STYLE="bubble" TEXT="andorid">
+<edge STYLE="bezier"/>
 <font NAME="SansSerif" SIZE="20"/>
-<node COLOR="#0033ff" CREATED="1372303474979" ID="ID_172985541" MODIFIED="1372306754256" POSITION="right" TEXT="Activity(&#x6d3b;&#x52a8;)">
+<hook NAME="accessories/plugins/HierarchicalIcons.properties"/>
+<hook NAME="accessories/plugins/RevisionPlugin.properties"/>
+<node COLOR="#0033ff" CREATED="1372303474979" ID="ID_172985541" MODIFIED="1372325533849" POSITION="right" STYLE="bubble" TEXT="Activity(&#x6d3b;&#x52a8;)">
 <edge STYLE="sharp_bezier" WIDTH="8"/>
 <font NAME="SansSerif" SIZE="18"/>
-<node CREATED="1372306731234" ID="ID_389581377" MODIFIED="1372306739220" TEXT="active&#x662f;&#x4ec0;&#x4e48;">
-<node CREATED="1372306757288" ID="ID_721403860" MODIFIED="1372306757288">
+<node COLOR="#00b439" CREATED="1372306731234" ID="ID_389581377" MODIFIED="1372325533849" STYLE="bubble" TEXT="active&#x662f;&#x4ec0;&#x4e48;">
+<edge STYLE="bezier" WIDTH="thin"/>
+<font NAME="SansSerif" SIZE="16"/>
+<node COLOR="#990000" CREATED="1372306757288" ID="ID_721403860" MODIFIED="1372325533838" STYLE="bubble">
 <richcontent TYPE="NODE"><html>
   <head>
     
@@ -25,12 +30,15 @@
       &#26412;&#25991;&#26723;&#20854;&#20313;&#37096;&#20998;&#23558;&#35752;&#35770;&#22914;&#20309;&#24314;&#31435;&#21644;&#20351;&#29992;&#27963;&#21160;&#65292;&#21253;&#25324;&#19968;&#20010;&#23436;&#25972;&#30340;&#35752;&#35770;&#27963;&#21160;&#30340;&#29983;&#21629;&#21608;&#26399;&#26159;&#22914;&#20309;&#24037;&#20316;&#30340;&#22522;&#30784;&#65292;&#25152;&#20197;&#20320;&#21487;&#20197;&#27491;&#30830;&#22320;&#31649;&#29702;&#21508;&#31181;&#27963;&#21160;&#29366;&#24577;&#20043;&#38388;&#30340;&#36807;&#28193;&#12290;
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
+<edge STYLE="bezier"/>
+<font NAME="SansSerif" SIZE="14"/>
 </node>
 </node>
-<node CREATED="1372306669330" ID="ID_1187827018" MODIFIED="1372306682917" TEXT="&#x521b;&#x5efa;active">
-<node CREATED="1372306692589" ID="ID_649329655" MODIFIED="1372306692589">
+<node COLOR="#00b439" CREATED="1372306669330" ID="ID_1187827018" MODIFIED="1372325533838" STYLE="bubble" TEXT="&#x521b;&#x5efa;active">
+<edge STYLE="bezier" WIDTH="thin"/>
+<font NAME="SansSerif" SIZE="16"/>
+<node COLOR="#990000" CREATED="1372306692589" ID="ID_649329655" MODIFIED="1372325533830" STYLE="bubble">
 <richcontent TYPE="NODE"><html>
   <head>
     
@@ -45,71 +53,99 @@
       &#12288;&#12288;&#26377;&#33509;&#24178;&#20854;&#23427;&#29983;&#21629;&#21608;&#26399;&#22238;&#35843;&#20989;&#25968;&#20320;&#24212;&#35813;&#20351;&#29992;&#20026;&#20102;&#25552;&#20379;&#19968;&#20010;&#27969;&#30021;&#30340;&#29992;&#25143;&#20307;&#39564;&#65292;&#24182;&#34920;&#25805;&#20316;&#24322;&#24120;&#20013;&#26029;&#20250;&#24341;&#36215;&#20320;&#30340;activity&#34987;&#20013;&#26029;&#29978;&#33267;&#34987;&#25703;&#27585;&#12290;
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
+<edge STYLE="bezier"/>
+<font NAME="SansSerif" SIZE="14"/>
 </node>
 </node>
-<node COLOR="#00b439" CREATED="1372303822385" ID="ID_1482652627" MODIFIED="1372303901990" TEXT="&#x56db;&#x4e2a;&#x57fa;&#x672c;&#x72b6;&#x6001;">
+<node BACKGROUND_COLOR="#ffff00" COLOR="#00b439" CREATED="1372303822385" ID="ID_1482652627" MODIFIED="1372325691220" STYLE="bubble" TEXT="&#x56db;&#x4e2a;&#x57fa;&#x672c;&#x72b6;&#x6001; ">
 <edge STYLE="bezier" WIDTH="thin"/>
 <font NAME="SansSerif" SIZE="16"/>
-<node COLOR="#990000" CREATED="1372303843785" ID="ID_1239188516" MODIFIED="1372303985335" TEXT="Active/Runing">
+<node COLOR="#990000" CREATED="1372303843785" ID="ID_1239188516" MODIFIED="1372325533830" STYLE="bubble" TEXT="Active/Runing">
 <richcontent TYPE="NOTE"><html>
   <head>
     
   </head>
   <body>
     <p>
-      <font color="rgb(0, 0, 0)" face="arial, nsimsun, sans-serif" size="15px">&#19968;&#20010;&#26032; Activity &#21551;&#21160;&#20837;&#26632;&#21518;&#65292;&#23427;&#22312;&#23631;&#24149;&#26368;&#21069;&#31471;&#65292;&#22788;&#20110;&#26632;&#30340;&#26368;&#39030;&#31471;&#65292;&#27492;&#26102;&#23427;&#22788;&#20110;&#21487;&#35265;&#24182;&#21487;&#21644;&#29992;&#25143;&#20132;&#20114;&#30340;&#28608;&#27963;&#29366;&#24577;&#12290;</font>
+      12321312312322131232
     </p>
   </body>
 </html>
 </richcontent>
+<edge STYLE="bezier"/>
 <font NAME="SansSerif" SIZE="14"/>
-</node>
-<node COLOR="#990000" CREATED="1372303879273" ID="ID_421693094" MODIFIED="1372303998119" TEXT="Paused ">
-<richcontent TYPE="NOTE"><html>
+<node COLOR="#111111" CREATED="1372324578899" ID="ID_1024630343" MODIFIED="1372325533830" STYLE="bubble">
+<richcontent TYPE="NODE"><html>
   <head>
     
   </head>
   <body>
     <p>
-      <font color="rgb(0, 0, 0)" face="arial, nsimsun, sans-serif" size="15px">&#24403; Activity &#34987;&#21478;&#19968;&#20010;&#36879;&#26126;&#25110;&#32773; Dialog &#26679;&#24335;&#30340; Activity &#35206;&#30422;&#26102;&#30340;&#29366;&#24577;&#12290;&#27492;&#26102;&#23427;&#20381;&#28982;&#19982;&#31383;&#21475;&#31649;&#29702;&#22120;&#20445;&#25345;&#36830;&#25509;&#65292;&#31995;&#32479;&#32487;&#32493;&#32500;&#25252;&#20854;&#20869;&#37096;&#29366;&#24577;&#65292;&#25152;&#20197;&#23427;&#20173;&#28982;&#21487;&#35265;&#65292;&#20294;&#23427;&#24050;&#32463;&#22833;&#21435;&#20102;&#28966;&#28857;&#25925;&#19981;&#21487;&#19982;&#29992;&#25143;&#20132;&#20114;&#12290;</font>
+      <font face="arial, nsimsun, sans-serif" color="rgb(0, 0, 0)">&#19968;&#20010;&#26032; Activity &#21551;&#21160;&#20837;&#26632;&#21518;&#65292;&#23427;&#22312;&#23631;&#24149;&#26368;&#21069;&#31471;&#65292;&#22788;&#20110;&#26632;&#30340;&#26368;&#39030;&#31471;&#65292;&#27492;&#26102;&#23427;&#22788;&#20110;&#21487;&#35265;&#24182;&#21487;&#21644;&#29992;&#25143;&#20132;&#20114;&#30340;&#28608;&#27963;&#29366;&#24577;&#12290;</font>
     </p>
   </body>
 </html>
 </richcontent>
-<font NAME="SansSerif" SIZE="14"/>
+<edge STYLE="bezier"/>
 </node>
-<node COLOR="#990000" CREATED="1372303928145" ID="ID_1411943584" MODIFIED="1372304020973" TEXT="Stoped">
-<richcontent TYPE="NOTE"><html>
+</node>
+<node COLOR="#990000" CREATED="1372303879273" ID="ID_421693094" MODIFIED="1372325533830" STYLE="bubble" TEXT="Paused ">
+<edge STYLE="bezier"/>
+<font NAME="SansSerif" SIZE="14"/>
+<node COLOR="#111111" CREATED="1372324594515" ID="ID_1188849123" MODIFIED="1372325533828" STYLE="bubble">
+<richcontent TYPE="NODE"><html>
   <head>
     
   </head>
   <body>
     <p>
-      <font color="rgb(0, 0, 0)" face="arial, nsimsun, sans-serif" size="15px">&#24403; Activity &#34987;&#21478;&#22806;&#19968;&#20010; Activity &#35206;&#30422;&#12289;&#22833;&#21435;&#28966;&#28857;&#24182;&#19981;&#21487;&#35265;&#26102;&#22788;&#20110;</font><font color="rgb(0, 0, 0)" face="arial, nsimsun, sans-serif">&#160;</font><font color="rgb(0, 0, 0)" face="arial, nsimsun, sans-serif" size="15px"><strong style="letter-spacing: normal; word-spacing: 0px; font-variant: normal; font-size: 15px; white-space: normal; color: rgb(0, 0, 0); line-height: normal; text-transform: none; text-align: left; background-color: rgb(255, 255, 255); font-style: normal; font-family: arial, nsimsun, sans-serif; text-indent: 0px"><em>Stop</em></strong><em><strong style="letter-spacing: normal; font-variant: normal; word-spacing: 0px; font-size: 15px; color: rgb(0, 0, 0); white-space: normal; line-height: normal; text-transform: none; font-style: normal; background-color: rgb(255, 255, 255); text-align: left; font-family: arial, nsimsun, sans-serif; text-indent: 0px">ed</strong></em>&#29366;&#24577;&#12290;</font>
+      <font face="arial, nsimsun, sans-serif" color="rgb(0, 0, 0)">&#24403; Activity &#34987;&#21478;&#19968;&#20010;&#36879;&#26126;&#25110;&#32773; Dialog &#26679;&#24335;&#30340; Activity &#35206;&#30422;&#26102;&#30340;&#29366;&#24577;&#12290;&#27492;&#26102;&#23427;&#20381;&#28982;&#19982;&#31383;&#21475;&#31649;&#29702;&#22120;&#20445;&#25345;&#36830;&#25509;&#65292;&#31995;&#32479;&#32487;&#32493;&#32500;&#25252;&#20854;&#20869;&#37096;&#29366;&#24577;&#65292;&#25152;&#20197;&#23427;&#20173;&#28982;&#21487;&#35265;&#65292;&#20294;&#23427;&#24050;&#32463;&#22833;&#21435;&#20102;&#28966;&#28857;&#25925;&#19981;&#21487;&#19982;&#29992;&#25143;&#20132;&#20114;&#12290;</font>
     </p>
   </body>
 </html>
 </richcontent>
-<font NAME="SansSerif" SIZE="14"/>
+<edge STYLE="bezier"/>
 </node>
-<node COLOR="#990000" CREATED="1372303949914" ID="ID_1007877703" MODIFIED="1372304028407" TEXT="Killed ">
-<richcontent TYPE="NOTE"><html>
+</node>
+<node COLOR="#990000" CREATED="1372303928145" ID="ID_1411943584" MODIFIED="1372325533828" STYLE="bubble" TEXT="Stoped">
+<edge STYLE="bezier"/>
+<font NAME="SansSerif" SIZE="14"/>
+<node COLOR="#111111" CREATED="1372324603020" ID="ID_473450781" MODIFIED="1372325533827" STYLE="bubble">
+<richcontent TYPE="NODE"><html>
   <head>
     
   </head>
   <body>
     <p>
-      <font color="rgb(0, 0, 0)" face="arial, nsimsun, sans-serif" size="15px">Activity &#34987;&#31995;&#32479;&#26432;&#27515;&#22238;&#25910;&#25110;&#32773;&#27809;&#26377;&#34987;&#21551;&#21160;&#26102;&#22788;&#20110;&#160;<strong style="letter-spacing: normal; word-spacing: 0px; font-variant: normal; font-size: 15px; white-space: normal; color: rgb(0, 0, 0); line-height: normal; text-transform: none; text-align: left; background-color: rgb(255, 255, 255); font-style: normal; font-family: arial, nsimsun, sans-serif; text-indent: 0px"><em>Killed</em></strong>&#29366;&#24577;&#12290;</font>
+      <font face="arial, nsimsun, sans-serif" color="rgb(0, 0, 0)">&#24403; Activity &#34987;&#21478;&#22806;&#19968;&#20010; Activity &#35206;&#30422;&#12289;&#22833;&#21435;&#28966;&#28857;&#24182;&#19981;&#21487;&#35265;&#26102;&#22788;&#20110;&#160;</font><em><strong style="word-spacing: 0px; text-indent: 0px; white-space: normal; letter-spacing: normal; background-color: rgb(255, 255, 255); font-variant: normal; font-style: normal; font-size: 15px; color: rgb(0, 0, 0); text-transform: none; text-align: left; line-height: normal; font-family: arial, nsimsun, sans-serif"><font size="15px" color="rgb(0, 0, 0)" face="arial, nsimsun, sans-serif">Stop</font></strong><font size="15px" color="rgb(0, 0, 0)" face="arial, nsimsun, sans-serif"><strong style="word-spacing: 0px; text-indent: 0px; letter-spacing: normal; white-space: normal; background-color: rgb(255, 255, 255); font-variant: normal; font-style: normal; font-size: 15px; color: rgb(0, 0, 0); text-align: left; text-transform: none; line-height: normal; font-family: arial, nsimsun, sans-serif">ed</strong></font></em><font color="rgb(0, 0, 0)" face="arial, nsimsun, sans-serif">&#29366;&#24577;&#12290;</font>
     </p>
   </body>
 </html>
 </richcontent>
+<edge STYLE="bezier"/>
+</node>
+</node>
+<node COLOR="#990000" CREATED="1372303949914" ID="ID_1007877703" MODIFIED="1372325533827" STYLE="bubble" TEXT="Killed ">
+<edge STYLE="bezier"/>
 <font NAME="SansSerif" SIZE="14"/>
+<node COLOR="#111111" CREATED="1372324611148" ID="ID_1595502269" MODIFIED="1372325533827" STYLE="bubble">
+<richcontent TYPE="NODE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      <font face="arial, nsimsun, sans-serif" color="rgb(0, 0, 0)">Activity &#34987;&#31995;&#32479;&#26432;&#27515;&#22238;&#25910;&#25110;&#32773;&#27809;&#26377;&#34987;&#21551;&#21160;&#26102;&#22788;&#20110;&#160;</font><em><strong style="word-spacing: 0px; text-indent: 0px; white-space: normal; letter-spacing: normal; background-color: rgb(255, 255, 255); font-variant: normal; font-style: normal; font-size: 15px; color: rgb(0, 0, 0); text-transform: none; text-align: left; line-height: normal; font-family: arial, nsimsun, sans-serif"><font size="15px" color="rgb(0, 0, 0)" face="arial, nsimsun, sans-serif">Killed</font></strong></em><font color="rgb(0, 0, 0)" face="arial, nsimsun, sans-serif">&#29366;&#24577;&#12290;</font>
+    </p>
+  </body>
+</html>
+</richcontent>
+<edge STYLE="bezier"/>
 </node>
 </node>
-<node COLOR="#00b439" CREATED="1372304050929" ID="ID_145939031" MODIFIED="1372304502822" STYLE="bubble">
+</node>
+<node COLOR="#00b439" CREATED="1372304050929" ID="ID_145939031" MODIFIED="1372325533827" STYLE="bubble">
 <richcontent TYPE="NODE"><html>
   <head>
     
@@ -119,11 +155,10 @@
       &#29983;&#21629;&#21608;&#26399;
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 <edge STYLE="bezier" WIDTH="thin"/>
 <font NAME="SansSerif" SIZE="16"/>
-<node CREATED="1372304454985" HGAP="44" ID="ID_985196843" MODIFIED="1372304486352" VSHIFT="2">
+<node COLOR="#990000" CREATED="1372304454985" HGAP="44" ID="ID_985196843" MODIFIED="1372325533827" STYLE="bubble" VSHIFT="2">
 <richcontent TYPE="NODE"><html>
   <head>
     
@@ -133,9 +168,14 @@
   </body>
 </html>
 </richcontent>
+<edge STYLE="bezier"/>
+<font NAME="SansSerif" SIZE="14"/>
 </node>
 </node>
-<node CREATED="1372305118689" ID="ID_639333082" MODIFIED="1372305125182" TEXT="&#x72b6;&#x6001;&#x8f6c;&#x6362;"/>
+<node COLOR="#00b439" CREATED="1372305118689" ID="ID_639333082" MODIFIED="1372325533827" STYLE="bubble" TEXT="&#x72b6;&#x6001;&#x8f6c;&#x6362;">
+<edge STYLE="bezier" WIDTH="thin"/>
+<font NAME="SansSerif" SIZE="16"/>
+</node>
 </node>
 </node>
 </map>
