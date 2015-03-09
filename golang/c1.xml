@@ -5,9 +5,81 @@
     xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
      <title>初级</title>
      <para>Text</para>
-    <section>
-        <title>Q:环境搭建</title>
-        <para></para>
+    <section xml:id="c1-s1">
+        <title>Q:如何环境搭建</title>
+        <subtitle>A:环境搭建如下：</subtitle>
+        <para>Step1:下载</para>
+        <itemizedlist>
+            <listitem><para>官网下载：http://code.google.com/p/go/downloads/list</para><note><para>可能被墙了</para></note></listitem>
+            <listitem><para>golang中国下载:http://golangtc.com/</para></listitem>
+        </itemizedlist>
+        <para>选择安装</para>
+        <section xml:id="c1-s1-s1">
+            <title>Step2:安装</title>
+            <para>在linux环境中Go默认会被安装到/usr/local/go目录中。安装包在安装完成后会自动添加执行
+                文件目录到系统路径中。</para>
+            <para>安装完成后，请重新启动命令行程序，然后运行以下命令以验证Go是否已经正确安装</para>
+        </section>
+    </section>
+    <section xml:id="c1-s2">
+        <title>Q：eclipse的golang插件怎么安装</title>
+        <subtitle>A:</subtitle>
+        <screen>Installation
+
+Requirements:
+
+Eclipse 4.4 (Luna) or later.
+A 1.7 Java VM or later (http://www.java.com/). Otherwise GoClipse will silently fail to start.
+Go development tools and libraries installed on target machine (http://golang.org/doc/install.html). Currently, only the plan 9 style compilers are supported. GCCGO may be supported in the future
+Instructions:
+
+Use your existing Eclipse, or download a new Eclipse package from http://www.eclipse.org/downloads/.
+For an Eclipse package without any other IDEs or extras (such a VCS tools), download the "Platform Runtime Binary".
+Start Eclipse, go to Help -> Install New Software...
+Click the Add... button, then enter the Update Site URL: http://goclipse.github.io/releases/ in the Location field, click OK.
+Select the recently added update site in the Work with: dropdown. Type GoClipse in the filter box. Now the Goclipse feature should appear below.
+Select the GoClipse feature, and complete the wizard.
+Dependencies such as CDT will automatically be added during installation.
+Restart Eclipse. After that take a look at the configuration section in the User Guide.
+Updating:
+
+If you already have GoClipse installed, and want to update it to a newer release, click Help -> Check for Updates...</screen>
+        <para>参见<link xlink:href="https://github.com/GoClipse/goclipse/blob/master/documentation/Installation.md">详情</link></para>
+    </section>
+    <section xml:id="c1-s3">
+        <title>Q:GoClipse配置</title>
+        <screen>首先需要下载安装liteide。</screen>
+        <mediaobject><imageobject> <imagedata fileref="images/1.png"/></imageobject></mediaobject>
+        <para>配置golang</para>
+        <mediaobject><imageobject> <imagedata fileref="images/2.png"/></imageobject></mediaobject>
+        <para>配置gocode（这个是编写代码时候的自动补全功能）</para>
+        <mediaobject><imageobject> <imagedata fileref="images/3.png"/></imageobject></mediaobject>
+    </section>
+    <section xml:id="c1-s4">
+        <title>经典实例HelloWorld</title>
+        <para>新建工程</para>
+        <mediaobject><imageobject> <imagedata fileref="images/4.png"/></imageobject></mediaobject>
+        <warning> <para>在src目录下新建一个文件。在src建立go文件是无法被处理的</para></warning>
+        <mediaobject><imageobject> <imagedata fileref="images/5.png"/></imageobject></mediaobject>
+        <mediaobject><imageobject> <imagedata fileref="images/6.png"/></imageobject></mediaobject>
+        <para>新建一个go文件</para>
+        <mediaobject><imageobject> <imagedata fileref="images/7.png"/></imageobject></mediaobject>
+        <mediaobject><imageobject> <imagedata fileref="images/8.png"/></imageobject></mediaobject>
+        <literallayout>package main 
+import (
+    "fmt"
+)
+func main() {
+  fmt.Print("hello world")
+}            </literallayout>
+        <para>运行</para>
+        <mediaobject><imageobject> <imagedata fileref="images/9.png"/></imageobject></mediaobject>
+        <para>结果</para>
+        <mediaobject><imageobject> <imagedata fileref="images/10.png"/></imageobject></mediaobject>
+    </section>
+    <section xml:id="c1-s5">
+        <title>debug</title>
+        <mediaobject><imageobject> <imagedata fileref="images/11.png"/></imageobject></mediaobject>
+        <mediaobject><imageobject> <imagedata fileref="images/12.png"/></imageobject></mediaobject>
     </section>
 </chapter>
-
