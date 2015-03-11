@@ -7,6 +7,7 @@
     <projectTree name="golang.xpr">
         <folder path="images/"/>
         <file name="c1.xml"/>
+        <file name="c2.xml"/>
         <file name="golang.xml"/>
     </projectTree>
 </project>

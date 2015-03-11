@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://docbook.org/xml/5.0/rng/docbook.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="http://docbook.org/xml/5.0/rng/docbook.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<chapter xmlns="http://docbook.org/ns/docbook"
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+     <title>变量</title>
+     <section xml:id="c1-s1">
+         <title>变量定义</title>
+         <para>使用关键字 var 定义变量，自动初始化为零值。如果提供初始化值，可省略变量类型，由
+             编译器自动推导。</para>
+         <literallayout linenumbering="numbered">
+var v1 int 
+var v2 string 
+var v3 [10]int  // 数组 
+var v4 []int  // 数组切片 
+var v5 struct { 
+    f int 
+} 
+var v6 *int  // 指针 
+var v7 map[string] int // map，key为string类型，value为int类型 
+var v8 func(a int) int 
+var v9 int = 10
+var v10 = 10 //编译器可以自动推导出v10的类型 
+v11 := 10 //编译器可以自动推导出v11的类型 
+        </literallayout>
+         <section xml:id="c1-s1-s1">
+             <title>多变量定义</title>
+             <para>var v1, v2, v3 int</para>
+             <para>var v4, v5 = "abc", 123</para>
+             <para>将变量放到一起</para>
+            <warning><para>不能有“:=”的声明方式在里面</para></warning>
+             <literallayout>
+ var (
+    v1 int
+    v2 string
+    v3 = 10
+)
+         </literallayout>
+         </section>
+        <section xml:id="c1-s1-s2">
+            <title>变量赋值</title>
+            <para>多变量赋值时,从左到右依次赋值</para>
+            <para>var v4, v5 = "abc", 123</para>
+            <para>golang多重赋值功能</para>
+            <para>如下面这个交换v1和v2变量的语句：</para>
+            <para>v1, v2 = v2, v1</para>
+            <para>不支持多重赋值功能的代码的语句</para>
+            <para>v3=v1,v1=v2,v2=v3</para>
+        </section>
+         <section xml:id="c1-s1-s3">
+             <title>匿名变量"_"</title>
+             <para>用于忽略占位</para>
+         
+             <para>会报错的代码</para>
+             <literallayout>
+package main
+import (
+	"fmt"
+)
+func test() (int, string) {
+	return 1, "rv1"
+}
+func main() {
+	var v1 int<co xml:id="c1-s1-s2-co1" linkends="c1-s1-s2-collout1"/>
+	var v2 int
+	fmt.Println(v2)
+}
+             </literallayout>
+             <calloutlist>
+                 <callout arearefs="c1-s1-s2-co1" xml:id="c1-s1-s2-collout1"> <para>会报错： v1 declared and not used</para></callout>
+             </calloutlist>
+             <para>不会报错的代码</para>
+             <literallayout>
+package main
+import (
+	"fmt"
+)
+func test() (int, string) {
+	return 1, "rv1"
+}
+func main() {
+	var v1 int
+	_=v1<co xml:id="c1-s1-s2-co2" linkends="c1-s1-s2-collout2"/>
+	var v2 int
+	fmt.Println(v2)
+}
+             </literallayout>
+             <calloutlist>
+            
+                 <callout arearefs="c1-s1-s2-co2" xml:id="c1-s1-s2-collout2"> <para>使用匿名变量规避 “v1 declared and not used”的报错</para></callout>
+             </calloutlist>
+         </section>
+         <section xml:id="c1-s1-s4">
+             <title>常量</title>
+             <para>编译期可确定的数字、字符串、布尔值</para>
+             <screen></screen>
+             <literallayout>
+                 
+const v1 int=1  
+const v2 = 2           <co xml:id="c1-s1-s4-co1"/>
+const ( 
+    v3 int = 3 
+    v4 = -1                // 无类型整型常量 
+)  
+const v5, v6 float32 = 0, 3    // v5 = 0.0, v6 = 3.0，
+const v7, v8, v9 = 7, 8, "9str"
+const v10=1&lt;&lt;2  <co xml:id="c1-s1-s4-co2"/>
+const v11=	os.Geteuid()<co xml:id="c1-s1-s4-co3"/>
+             </literallayout>
+             <calloutlist>
+                 <callout arearefs="c1-s1-s4-co1"><para>无类型整型常量</para></callout>
+                 <callout arearefs="c1-s1-s4-co2"><para>在编译期运算的常量表达式</para></callout>
+                 <callout arearefs="c1-s1-s4-co3"><para>报错const initializer os.Geteuid() is not a constant</para><warning><para>常量的赋值是一个编译期行为， 所以右值不能出现任何需要运行期才能得出结果的表达
+                     式</para></warning></callout>
+             </calloutlist>
+             <para>在常量组中，如不提供类型和初始化值，那么视作与上一常量相同</para>
+             <literallayout>
+const (
+    v1 = "v1"
+    v2 // v2 = "v1"
+)
+
+             </literallayout>
+         </section>
+         <section xml:id="c1-s1-s5">
+             <title>预定义常量iota</title>
+             <para>是一个可被编译器修改的常量，在每一个const关键字出现时被
+                 重置为0，然后在下一个const出现之前，每出现一次iota，其所代表的数字会自动增1。</para>
+             <literallayout>
+ const (<co xml:id="c1-s1-s5-co1" linkends="c1-s1-s5-callout1"/>
+	v0 = iota //v0=0
+	v1 = iota //v1=1
+	v2 = iota //v2=2
+)
+const v3 = iota <coref linkend="c1-s1-s5-co1"/>//v3=0
+const ( <coref linkend="c1-s1-s5-co1"/>
+	v4 = iota //v4=0
+	v5 //v5=1
+	v6 //v6=2
+)
+             </literallayout>
+             <calloutlist>
+                 <callout arearefs="c1-s1-s5-co1" xml:id="c1-s1-s5-callout1"><para>const出现iota被重置为0</para></callout>
+             </calloutlist>
+             <para>在同一常量组中，可以提供多个iota，它们各自增长</para>
+             <literallayout>
+const (
+    v1, v2 = iota, iota+1   // v1=0, v2=1
+    v3, v4                      // v3=1,v4=2
+)
+                 
+             </literallayout>
+             <para>如果iota被中断必须要显示回复</para>
+             <literallayout>
+ const (
+    v1   = iota      // v1=0
+    v2               // v2=1
+    v3   = "v3"       // v3="v3" 
+    v4               // v4="v3"，与上一行相同。
+    v5   = iota      // v5=4，显式恢复。注意计数包含了 v3,v4两行。
+    v6               // v6=5
+)
+             </literallayout>
+         </section>
+         <section xml:id="c1-s1-s6">
+             <title>枚举</title>
+             <para>枚举是指指一系列相关的常量，比如性别</para>
+             <literallayout>
+ const(
+    Male = iota 
+    Female
+)
+             </literallayout>
+             <para>自定义类型来实现枚举类型限制</para>
+             <literallayout>package main
+import(
+	"fmt")
+type Sex int
+const(
+    Male Sex = iota 
+    Female
+	)
+func  printSex(s Sex){
+	fmt.Println(s)
+	}
+func main() {
+	v1 := Male
+	v2 := Female
+	printSex(v1)
+	printSex(v2)
+	printSex(3)<co xml:id="c1-s1-s6-co1"/>
+	v3 :=1
+	printSex(v3)<co xml:id="c1-s1-s6-co2"/>
+}
+</literallayout>
+             <calloutlist>
+                 <callout arearefs="c1-s1-s6-co1"><para>常量会被编译器⾃自动转换</para></callout>
+                 <callout arearefs="c1-s1-s6-co2"><para>Error:<errortext>cannot use v3 (type int) as type Sex in argument to printSex</errortext></para></callout>
+             </calloutlist>
+         </section>
+         
+     </section>
+</chapter>
