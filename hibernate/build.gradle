@@ -1,0 +1,28 @@
+ configure(allprojects) {
+    apply plugin: 'eclipse'
+	apply plugin: 'java'
+    repositories {
+        mavenCentral()
+    }
+    sourceSets {
+        main {
+            java.srcDirs "src"
+        }
+    }
+
+	
+	compileJava { 
+		sourceCompatibility=1.6
+		targetCompatibility=1.6
+		options.encoding = 'utf-8'
+				
+	}
+
+	dependencies {
+		compile fileTree("lib")
+	}
+}
+project('hibernatebase') {
+    description = 'GameServer'
+}
+
