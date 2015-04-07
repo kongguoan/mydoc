@@ -1,0 +1,222 @@
+= 文本格式
+
+== 引用
+
+=== 强调
+
+使用“_”符号将字符包围起来
+
+.强调
+---------------------
+中国_共产党万岁_！万万岁！
+---------------------
+
+中国_共产党万岁_！万万岁！
+
+=== 加强
+使用符号"*"符号将字符包围起来
+--------------
+中国*共产党万岁*！万万岁！
+--------------
+
+.加强
+中国*共产党万岁*！万万岁！
+
+=== Monospaced 
+
+使用“+”符号将字符包围起来
+
+.Monospaced
+---------------------
+中国+共产党万岁+！万万岁！
+---------------------
+
+中国+共产党万岁+！万万岁！
+
+=== 单引号的文字
+
+使用符号"`"符号将字符包围起来
+
+.单引号的文字
+---------------------
+中国`共产党万岁`！万万岁！
+---------------------
+
+中国`共产党万岁`！万万岁！
+
+== 双引号
+
+使用符号"``"符号将字符包围起来
+
+.双引号的文字
+---------------------
+中国''共产党万岁''！万万岁！
+---------------------
+
+中国``共产党万岁``！万万岁！
+
+=== 无引号文字
+
+使用"#"符号将字符包围起来
+
+.无引号文字
+---------------------
+中国#共产党万岁#！万万岁！
+---------------------
+
+中国#共产党万岁#！万万岁！
+
+== 引用文本属性
+
+. <color>:文字颜色
+. <color>-background:文字背景颜色
+. big 或者samll :文字大小
+. underline ,overline ,line-through字体样式
+
+.Note
+
+如果不换行需要使用空格隔开最后一个位置
+
+.例子
+---------------------
+[red]#Obvious# and [big red yellow-background]*very obvious*.
+[underline]#Underline text#, [overline]#overline text# and
+[blue line-through]*bold blue and line-through*.
+---------------------
+
+[red]#Obvious# and [big red yellow-background]*very obvious*.
+
+[underline]#Underline text#, [overline]#overline text# and
+
+[blue line-through]*bold blue and line-through*.
+
+.无约束的引用
+
+---------------
+__unconstrained emphasized text__
+**unconstrained strong text**
+++unconstrained monospaced text++
+##unconstrained unquoted text##
+---------------
+
+__unconstrained emphasized text__
+**unconstrained strong text**
+++unconstrained monospaced text++
+##unconstrained unquoted text##
+
+== 上标和下标
+“~”为下标，“^”为上标
+
+---------------
+H~2~O  x^10^
+
+e^&#960;i^+1 = 0. H~2~O and x^10^. Some ^super^ ^text^ and ~some~ ~sub~ ~text~
+---------------
+
+
+H~2~O  x^10^
+
+
+
+
+e^&#960;i^+1 = 0. H~2~O and x^10^. Some ^super^ ^text^ and ~some~ ~sub~ ~text~
+
+
+
+== 引用和诗文段落样式
+
+=== 诗文样式
+.诗文
+--------
+[verse, 李白, 半夜有感]
+床前明月光,
+疑是地上霜.
+举头望明月
+低头思故乡 
+--------
+[verse, 李白, 半夜有感]
+床前明月光,
+疑是地上霜.
+举头望明月
+低头思故乡 
+
+.引用
+----
+[quote, Bertrand Russell, The World of Mathematics (1956)]
+A good notation has subtlety and suggestiveness which at times makes
+it almost seem like a live teacher.
+----
+[quote, Bertrand Russell, The World of Mathematics (1956)]
+A good notation has subtlety and suggestiveness which at times makes
+it almost seem like a live teacher.
+
+== 警告段落
+
+. TIP:提示
+. NOTE:提示
+. IMPORTANT:重要
+. WARNING:警告
+. CAUTION:警惕
+
+----
+TIP: 提示
+
+NOTE: 提示
+
+IMPORTANT: 重要
+
+WARNING: 警告
+
+CAUTION: 警惕
+----
+
+TIP: 提示
+
+NOTE: 提示
+
+IMPORTANT: 重要
+
+WARNING: 警告
+
+CAUTION: 警惕
+
+----
+[TIP]
+提示
+
+[NOTE]
+提示
+
+[IMPORTANT]
+ 重要
+
+[WARNING]
+警告
+
+[CAUTION]
+ 警惕
+----
+
+[TIP]
+提示
+
+[NOTE]
+提示
+
+[IMPORTANT]
+ 重要
+
+[WARNING]
+警告
+
+[CAUTION]
+ 警惕
+
+[listing]
+--
+Lorum ipsum ...
+--
+---------------
+Lorum ipsum ...
+---------------
+
