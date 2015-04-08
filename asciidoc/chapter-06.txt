@@ -1,0 +1,106 @@
+= Macros（宏）
+
+. 语法为<名称>:<目标>[<属性>]（内联宏）
+.  <名称>:::<目标>[<属性>](在块内的宏)
+
+-----
+http://www.docbook.org/[DocBook.org]
+include::chapt1.txt[tabsize=2]
+mailto:srackham@gmail.com[]
+-----
+
+==  anchor:chapter-06-anchor-1[内联宏]内联宏
+
+内联宏出现在内联元素上下文。预定义的内联宏包括url、图像和链接宏。
+
+=== URLs
+
+http、https、ftp文件,mailto和callto使用预定义的呈现内联宏。
+[NOTE]
+如果属性为空那么将直接显示出连接，如果有空格。请使用%20替换掉空格
+
+-------
+http://www.docbook.org/[DocBook.org]
+
+http://www.docbook.org/
+
+mailto:joe.bloggs@foobar.com[email Joe Bloggs]
+
+joe.bloggs@foobar.com
+-------
+
+http://www.docbook.org/[DocBook.org]
+
+http://www.docbook.org/
+
+mailto:joe.bloggs@foobar.com[email Joe Bloggs]
+
+joe.bloggs@foobar.com
+
+==== 内部交叉引用
+
+===== anchor（锚点）
+
+\[[<id>,<xreflabel>]]
+\anchor:<id>[<xreflabel>]
+. <id> 唯一标识
+. <xreflabel> 显示的文字
+
+===== xref（参考）
+\<<<id>,<caption>>>
+\xref:<id>[<caption>]
+
+. <id> 参考的锚点id
+. <caption> 连接显示的文字
+
+[[tiger_image]]
+.Tyger tyger
+http://www.baidu.com[百度]
+
+This can be seen in <<tiger_image>>.i
+
+==== 连接到本地文档
+
+\link:<target>[<caption>]
+
+. <target> 文件的相对路径
+. <caption> 连接显示的名字。如果没有。将显示出<target>
+
+可以使用<filename>#<id>连接到目标文档的描点。只有文档是html的时候才有用
+
+==== 图片
+
+\image:<target>[<attributes>]
+
+. <target> 图片文件一般最好是PNG 或 JPG
+. <attributes> 属性
+
+列子
+
+. 图片文字
+\image:images/logo.png[Company Logo]
+. 图片大小
+\image:images/logo.png["Company Logo",height=32]
+. 小图点击出现大图
+\image:screen-thumbnail.png[height=32,link="screen.png"]
+. 图片水平
+\image::images/logo.png[scaledwidth="75%",alt="Company Logo"]
+
+== Block Macros(块宏)
+
+与xref:chapter-06-anchor-1[内联宏]的区别
+
+. 出现在block（内容块）中
+. 语法为 \<name>::<target>[<attrlist>]
+
+== 行注释
+
+与blockcommment 相同 不会显示出来给用户
+------
+你是看不见下面的话的
+//就是看不见
+------
+
+你是看不见下面的话的
+//就是看不见
+

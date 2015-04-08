@@ -1,0 +1,280 @@
+= 列表
+
+== 列表类型
+
+. 项目符号列表。（无序列表）
+. 编号列表。（有序列表）
+. 标签列表。
+. 插图编号列表
+
+===  项目符号列表
+项目符号列表项开始用一个破折号或一至五星号后面跟着一些空白然后一些文本
+
+-----
+- List item.
+* List item.
+** List item.
+*** List item.
+**** List item.
+***** List item.
+-----
+
+- List item.
+* List item.
+** List item.
+*** List item.
+**** List item.
+***** List item.
+
+=== 编号列表
+
+------
+1.   Arabic (decimal) numbered list item.
+a.   Lower case alpha (letter) numbered list item.
+F.   Upper case alpha (letter) numbered list item.
+iii) Lower case roman numbered list item.
+IX)  Upper case roman numbered list item.
+------
+
+1.   Arabic (decimal) numbered list item.
+a.   Lower case alpha (letter) numbered list item.
+F.   Upper case alpha (letter) numbered list item.
+iii) Lower case roman numbered list item.
+IX)  Upper case roman numbered list item.
+
+.隐式编号
+
+------
+. Arabic (decimal) numbered list item.
+.. Lower case alpha (letter) numbered list item.
+... Lower case roman numbered list item.
+.... Upper case alpha (letter) numbered list item.
+..... Upper case roman numbered list item.
+------
+
+. Arabic (decimal) numbered list item.
+.. Lower case alpha (letter) numbered list item.
+... Lower case roman numbered list item.
+.... Upper case alpha (letter) numbered list item.
+..... Upper case roman numbered list item.
+
+您可以使用样式属性(第一位置属性)来指定另一个编号的风格。编号列表风格可以是下列值之一: arabic, loweralpha, upperalpha, lowerroman, upperroman.
+
+.举个例子
+
+---------
+- Praesent eget purus quis magna eleifend eleifend.
+  1. Fusce euismod commodo velit.
+    a. Fusce euismod commodo velit.
+    b. Vivamus fringilla mi eu lacus.
+    c. Donec eget arcu bibendum nunc consequat lobortis.
+  2. Vivamus fringilla mi eu lacus.
+    i)  Fusce euismod commodo velit.
+    ii) Vivamus fringilla mi eu lacus.
+  3. Donec eget arcu bibendum nunc consequat lobortis.
+  4. Nam fermentum mattis ante.
+- Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+  * Fusce euismod commodo velit.
+  ** Qui in magna commodo, est labitur dolorum an. Est ne magna primis
+     adolescens. Sit munere ponderum dignissim et. Minim luptatum et
+     vel.
+  ** Vivamus fringilla mi eu lacus.
+  * Donec eget arcu bibendum nunc consequat lobortis.
+- Nulla porttitor vulputate libero.
+  . Fusce euismod commodo velit.
+  . Vivamus fringilla mi eu lacus.
+[upperroman]
+    .. Fusce euismod commodo velit.
+    .. Vivamus fringilla mi eu lacus.
+  . Donec eget arcu bibendum nunc consequat lobortis.
+---------
+
+- Praesent eget purus quis magna eleifend eleifend.
+  1. Fusce euismod commodo velit.
+    a. Fusce euismod commodo velit.
+    b. Vivamus fringilla mi eu lacus.
+    c. Donec eget arcu bibendum nunc consequat lobortis.
+  2. Vivamus fringilla mi eu lacus.
+    i)  Fusce euismod commodo velit.
+    ii) Vivamus fringilla mi eu lacus.
+  3. Donec eget arcu bibendum nunc consequat lobortis.
+  4. Nam fermentum mattis ante.
+- Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+  * Fusce euismod commodo velit.
+  ** Qui in magna commodo, est labitur dolorum an. Est ne magna primis
+     adolescens. Sit munere ponderum dignissim et. Minim luptatum et
+     vel.
+  ** Vivamus fringilla mi eu lacus.
+  * Donec eget arcu bibendum nunc consequat lobortis.
+- Nulla porttitor vulputate libero.
+  . Fusce euismod commodo velit.
+  . Vivamus fringilla mi eu lacus.
+[upperroman]
+    .. Fusce euismod commodo velit.
+    .. Vivamus fringilla mi eu lacus.
+  . Donec eget arcu bibendum nunc consequat lobortis.
+
+
+一个预定义的紧凑选项是可用的项目符号和编号列表——这意味着DocBook
+spacing="compact" 列表属性可能会或可能不会被处理的DocBook工具处理
+
+-----
+[options="compact"]
+- Compact list item.
+- Another compact list item.
+-----
+
+[options="compact"]
+- Compact list item.
+- Another compact list item.
+
+你可以使用start属性列表开始数量设置(适用于HTML输出和DocBook输出处理DocBook XSL样式表)。
+.例子:
+-----
+[start=7]
+. List item 7.
+. List item 8.
+-----
+
+[start=7]
+. List item 7.
+. List item 8.
+
+=== 标签列表
+
+标签列表项由一个或多个文本标签列表项的文本组成。
+项标签开始与一个字母数字字符对左边框和结尾两个,三个或四个冒号或两个分号。项目可以有多个标签列表,每行一个
+列表项的文本由一个或多个行文本后开始最后一个标签(在同一行或一个新的线),可以嵌套列表或ListParagraph元素紧随其后。项目可以选择缩进文本。
+
+------
+In::
+Lorem::
+  Fusce euismod commodo velit.
+
+  Fusce euismod commodo velit.
+
+Ipsum:: Vivamus fringilla mi eu lacus.
+  * Vivamus fringilla mi eu lacus.
+  * Donec eget arcu bibendum nunc consequat lobortis.
+Dolor::
+  Donec eget arcu bibendum nunc consequat lobortis.
+  Suspendisse;;
+    A massa id sem aliquam auctor.
+  Morbi;;
+    Pretium nulla vel lorem.
+  In;;
+    Dictum mauris in urna.
+    Vivamus::: Fringilla mi eu lacus.
+    Donec:::   Eget arcu bibendum nunc consequat lobortis.
+------
+
+In::
+Lorem::
+  Fusce euismod commodo velit.
+
+  Fusce euismod commodo velit.
+
+Ipsum:: Vivamus fringilla mi eu lacus.
+  * Vivamus fringilla mi eu lacus.
+  * Donec eget arcu bibendum nunc consequat lobortis.
+Dolor::
+  Donec eget arcu bibendum nunc consequat lobortis.
+  Suspendisse;;
+    A massa id sem aliquam auctor.
+  Morbi;;
+    Pretium nulla vel lorem.
+  In;;
+    Dictum mauris in urna.
+    Vivamus::: Fringilla mi eu lacus.
+    Donec:::   Eget arcu bibendum nunc consequat lobortis.
+=== 水平标签列表样式
+
+文本与标签在同一行而不是在它下面
+
+-------
+[horizontal]
+*Lorem*:: Fusce euismod commodo velit.  Qui in magna commodo, est
+labitur dolorum an. Est ne magna primis adolescens.
+
+  Fusce euismod commodo velit.
+
+*Ipsum*:: Vivamus fringilla mi eu lacus.
+- Vivamus fringilla mi eu lacus.
+- Donec eget arcu bibendum nunc consequat lobortis.
+
+*Dolor*::
+  - Vivamus fringilla mi eu lacus.
+  - Donec eget arcu bibendum nunc consequat lobortis.
+-------
+
+[horizontal]
+*Lorem*:: Fusce euismod commodo velit.  Qui in magna commodo, est
+labitur dolorum an. Est ne magna primis adolescens.
+
+  Fusce euismod commodo velit.
+
+*Ipsum*:: Vivamus fringilla mi eu lacus.
+- Vivamus fringilla mi eu lacus.
+- Donec eget arcu bibendum nunc consequat lobortis.
+
+*Dolor*::
+  - Vivamus fringilla mi eu lacus.
+  - Donec eget arcu bibendum nunc consequat lobortis.
+
+=== 问答列表
+
+使用qanda样式的标签列表
+
+-----
+[qanda]
+Question one::
+        Answer one.
+Question two::
+        Answer two.
+-----
+
+[qanda]
+Question one::
+        Answer one.
+Question two::
+        Answer two.
+
+=== 术语列表
+
+使用glossary样式的标签列表
+
+-----
+[glossary]
+A glossary term::
+    The corresponding definition.
+A second glossary term::
+    The corresponding definition.
+-----
+
+[glossary]
+A glossary term::
+    The corresponding definition.
+A second glossary term::
+    The corresponding definition.
+
+=== 参考文献列表
+
+使用bibliography样式的标签列
+-----
+[bibliography]
+.Optional list title
+- [[[taoup]]] Eric Steven Raymond. 'The Art of UNIX
+  Programming'. Addison-Wesley. ISBN 0-13-142901-9.
+- [[[walsh-muellner]]] Norman Walsh & Leonard Muellner.
+  'DocBook - The Definitive Guide'. O'Reilly & Associates.
+  1999. ISBN 1-56592-580-7.
+-----
+
+[bibliography]
+.Optional list title
+- [[[taoup]]] Eric Steven Raymond. 'The Art of UNIX
+  Programming'. Addison-Wesley. ISBN 0-13-142901-9.
+- [[[walsh-muellner]]] Norman Walsh & Leonard Muellner.
+  'DocBook - The Definitive Guide'. O'Reilly & Associates.
+  1999. ISBN 1-56592-580-7.
+

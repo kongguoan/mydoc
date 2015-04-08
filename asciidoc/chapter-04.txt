@@ -1,0 +1,22 @@
+=  脚注
+
+== 格式
+
+. \footnote:[<文本>]
+生成一个脚注文本
+. \footnoteref:[<id>,<文本>]
+生成一个脚注文本和一个引用id
+. \footnoteref:[<id>]
+生成一个脚注引用指向一个id
+
+.例子
+
+-------
+A footnote footnote:[An example footnote.];
+a second footnote with a reference ID footnoteref:[note2,Second footnote.];
+finally a reference to the second footnote footnoteref:[note2].
+-------
+
+A footnote footnote:[An example footnote.];
+a second footnote with a reference ID footnoteref:[note2,Second footnote.];
+finally a reference to the second footnote footnoteref:[note2].

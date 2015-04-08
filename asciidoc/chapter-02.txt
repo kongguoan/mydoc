@@ -1,0 +1,202 @@
+= 限定块
+
+== 预定义块
+
+------------------
+CommentBlock(注释块):     //////////////////////////
+PassthroughBlock(传递块): ++++++++++++++++++++++++++
+ListingBlock(清单块):     --------------------------
+LiteralBlock(文字块):     ..........................
+SidebarBlock(工具条块):     **************************
+QuoteBlock(引用块):       __________________________
+ExampleBlock(例子块):     ==========================
+OpenBlock(开放块):        --
+------------------
+
+.默认支持
+[width="100%",options="header"]
+|====================
+| |Attributes |Callouts |Macros|Quotes|Replacements|Special chars|Special words
+|PassthroughBlock |Yes |No |Yes|No|No|No|No 
+|ListingBlock |No |Yes |No|No|No|Yes|No
+|LiteralBlock|No|Yes|No|No|No|Yes|No
+|SidebarBlock|Yes|No|Yes| Yes|Yes|Yes|Yes
+|QuoteBlock|Yes|No|Yes|Yes|Yes|Yes|Yes
+|ExampleBlock|Yes|No|Yes|Yes|Yes|Yes|Yes
+|OpenBlock|Yes|No|Yes|Yes|Yes|Yes|Yes
+|====================
+
+=== CommentBlock(注释块)
+不会生成出来显示给用户看的数据
+
+--------------------------
+我想看见你
+//////////////////////////
+你看不见我
+//////////////////////////
+--------------------------
+
+我想看见你
+//////////////////////////
+你看不见我
+//////////////////////////
+
+=== PassthroughBlock(传递块)
+
+内容默认情况下是主体和宏替换
+
+-------
+[subs="quotes"]
+++++++++++++++++++++++++++++++++++++++
+<table border="1"><tr>
+  <td>*Cell 1*</td>
+  <td>*Cell 2*</td>
+</tr></table>
+++++++++++++++++++++++++++++++++++++++
+-------
+
+[subs="quotes"]
+++++++++++++++++++++++++++++++++++++++
+<table border="1"><tr>
+  <td>*Cell 1*</td>
+  <td>*Cell 2*</td>
+</tr></table>
+++++++++++++++++++++++++++++++++++++++
+
+=== ListingBlock(清单块)
+用等宽字体逐字记录,他们保留行和空格格式。清单内没有文本格式或替换块除了特殊字符和插图的编号
+
+-----
+#include <stdio.h>
+
+int main() {
+   printf("Hello World!\n");
+   exit(0);
+}
+-----
+输出样式为:
+#include <stdio.h>
+
+int main() {
+    printf("Hello World!\n");
+    exit(0);
+}
+
+=== LiteralBlocks(文字块)
+
+跟ListingBlock好像没多大区别。暂时我还没去了解
+
+=== Sidebar Blocks(工具条块)
+一段简单的文字介绍叙述以外的主要文
+
+.An Example Sidebar
+************************************************
+Any AsciiDoc SectionBody element (apart from
+SidebarBlocks) can be placed inside a sidebar.
+************************************************
+
+=== Quote Blocks(引用块)
+
+用于引用的段落文本。有quote(引用)和verse(诗文)两种样式
+第一位置是样式(quote或verse)第二个位置是作者。第三个位置是引文
+
+--------------------------------------------------------------------
+[quote, Sir Arthur Conan Doyle, The Adventures of Sherlock Holmes]
+____________________________________________________________________
+As he spoke there was the sharp sound of horses' hoofs and
+grating wheels against the curb, followed by a sharp pull at the
+bell. Holmes whistled.
+
+"A pair, by the sound," said he. "Yes," he continued, glancing
+out of the window. "A nice little brougham and a pair of
+beauties. A hundred and fifty guineas apiece. There's money in
+this case, Watson, if there is nothing else."
+____________________________________________________________________
+--------------------------------------------------------------------
+
+[quote, Sir Arthur Conan Doyle, The Adventures of Sherlock Holmes]
+____________________________________________________________________
+As he spoke there was the sharp sound of horses' hoofs and
+grating wheels against the curb, followed by a sharp pull at the
+bell. Holmes whistled.
+
+"A pair, by the sound," said he. "Yes," he continued, glancing
+out of the window. "A nice little brougham and a pair of
+beauties. A hundred and fifty guineas apiece. There's money in
+this case, Watson, if there is nothing else."
+____________________________________________________________________
+
+=== ExampleBlock(例子块)
+  
+------------------
+[caption="Example 1: "]
+.An example with a custom caption
+=====================================================================
+Qui in magna commodo, est labitur dolorum an. Est ne magna primis
+adolescens.
+=====================================================================
+------------------
+
+[caption="Example 1: "]
+.An example with a custom caption
+=====================================================================
+Qui in magna commodo, est labitur dolorum an. Est ne magna primis
+adolescens.
+=====================================================================
+
+=== Admonition Blocks(警告块)
+
+---------------
+[NOTE]
+.A NOTE admonition block
+=====================================================================
+Qui in magna commodo, est labitur dolorum an. Est ne magna primis
+adolescens.
+
+. Fusce euismod commodo velit.
+. Vivamus fringilla mi eu lacus.
+  .. Fusce euismod commodo velit.
+  .. Vivamus fringilla mi eu lacus.
+. Donec eget arcu bibendum
+  nunc consequat lobortis.
+=====================================================================
+---------------
+
+[NOTE]
+.A NOTE admonition block
+=====================================================================
+Qui in magna commodo, est labitur dolorum an. Est ne magna primis
+adolescens.
+
+. Fusce euismod commodo velit.
+. Vivamus fringilla mi eu lacus.
+  .. Fusce euismod commodo velit.
+  .. Vivamus fringilla mi eu lacus.
+. Donec eget arcu bibendum
+  nunc consequat lobortis.
+=====================================================================
+
+=== Open Blocks(开放块)
+开放的块可以被指定像其他类型的块比如： literal, verse, quote, listing, TIP, NOTE, IMPORTANT, WARNING, CAUTION, abstract, partintro, comment, example, sidebar, source, music, latex, graphviz
+比如这两个块就是相同的
+
+--------
+[listing]
+--
+Lorum ipsum ...
+--
+和
+---------------
+Lorum ipsum ...
+---------------
+--------
+
+[listing]
+--
+Lorum ipsum ...
+--
+
+---------------
+Lorum ipsum ...
+---------------
+

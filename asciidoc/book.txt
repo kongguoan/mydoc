@@ -1,5 +1,5 @@
-= 测试
-Author Name
+= 简单入门
+孔国安
 :doctype: book
 :encoding: utf-8
 :lang: en
@@ -7,3 +7,9 @@ Author Name
 :numbered:
 
 include::chapter-01.txt[]
+include::chapter-02.txt[]
+include::chapter-03.txt[]
+include::chapter-04.txt[]
+include::chapter-05.txt[]
+include::chapter-06.txt[]
+include::chapter-07.txt[]

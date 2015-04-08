@@ -212,11 +212,4 @@ CAUTION: 警惕
 [CAUTION]
  警惕
 
-[listing]
---
-Lorum ipsum ...
---
----------------
-Lorum ipsum ...
----------------
 
